@@ -77,8 +77,19 @@ Complex operator/(Complex arg1, Complex arg2)
 {
     Complex result;
     double conjugate=arg2.re*arg2.re+arg2.im+arg2.im;
-    result.re = (arg1.re * arg2.re+arg1.im*arg2.im)/conjugate;
-    result.im = (arg1.im*arg2.re-arg1.re*arg2.im)/conjugate;
+    if(conjugate==0)
+      {
+	cerr<<"Nie moge dzielic przez zero!";
+	result.re=0;
+	result.im=0;
+	return result;
+      }
+    else
+      {
+	result.re = (arg1.re * arg2.re+arg1.im*arg2.im)/conjugate;
+	result.im = (arg1.im*arg2.re-arg1.re*arg2.im)/conjugate;
+      }
+
     return result;
 }
 Complex operator^(Complex arg1, Complex arg2)
