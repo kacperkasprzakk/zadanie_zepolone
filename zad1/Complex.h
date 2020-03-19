@@ -28,5 +28,5 @@ Complex operator *(Complex arg1, Complex arg2);
 Complex operator /(Complex arg1, Complex arg2);
 Complex operator ^(Complex arg1, Complex arg2);
 std::istream & operator>> (std::istream & streamIn, Complex &arg1);
-std::ostream & operator>> (std::ostream & streamOut, Complex arg1);
+std::ostream & operator<< (std::ostream & streamOut, Complex arg1);
 int compare(Complex arg1, Complex arg2);
