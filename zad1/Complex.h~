@@ -2,7 +2,7 @@
 
 #include <iostream>
 #include <cstdlib>
-
+using namespace std;
 
 /*!
  *  Plik zawiera definicje struktury Complex oraz zapowiedzi
@@ -27,6 +27,5 @@ Complex operator -(Complex arg1, Complex arg2);
 Complex operator *(Complex arg1, Complex arg2);
 Complex operator /(Complex arg1, Complex arg2);
 Complex operator ^(Complex arg1, Complex arg2);
-std::istream & operator>> (std::istream & streamIn, Complex &arg1);
-std::ostream & operator>> (std::ostream & streamOut, Complex arg1);
+istream & operator>> (istream & obiekt, Complex &arg1);
 int compare(Complex arg1, Complex arg2);
