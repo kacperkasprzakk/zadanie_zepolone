@@ -25,7 +25,20 @@ void display(Complex);
 Complex operator +(Complex arg1, Complex arg2);
 Complex operator -(Complex arg1, Complex arg2);
 Complex operator *(Complex arg1, Complex arg2);
-Complex operator /(Complex arg1, Complex arg2);
+Complex operator += (Complex &arg1, Complex arg2)
+{
+    arg1.re=arg1.re+arg2.re;
+    arg1.im=arg1.im+arg2.im;
+    return  arg1;
+}
+
+
+Complex operator-=(Complex &arg1, Complex arg2)
+{
+    arg1.re=arg1.re-arg2.re;
+    arg1.im=arg1.im-arg2.im;
+    return arg1;
+}Complex operator /(Complex arg1, Complex arg2);
 Complex operator ^(Complex arg1, Complex arg2);
 std::istream & operator>> (std::istream & streamIn, Complex &arg1);
 std::ostream & operator<< (std::ostream & streamOut, Complex arg1);

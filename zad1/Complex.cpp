@@ -159,6 +159,21 @@ int compare(Complex arg1, Complex arg2)//funkcja porównuje dwie liczby zespolon
         return 0;
     }
 }
+
+Complex operator += (Complex &arg1, Complex arg2)
+{
+    arg1.re=arg1.re+arg2.re;
+    arg1.im=arg1.im+arg2.im;
+    return  arg1;
+}
+
+
+Complex operator-=(Complex &arg1, Complex arg2)
+{
+    arg1.re=arg1.re-arg2.re;
+    arg1.im=arg1.im-arg2.im;
+    return arg1;
+}
 //
 // Created by User on 05.03.2020.
 //
