@@ -7,21 +7,13 @@
  *  Tutaj trzeba opisac klase. Jakie pojecie modeluje ta klasa
  *  i jakie ma glowne cechy.
  */
-class Vector
+class Matrix
 {
-    double data[SIZE];
+    /*
+     *  Tutaj trzeba wstawic definicje odpowiednich pol i metod prywatnych
+     */
 public:
-    const double &operator [] (int index) const;
-    double &operator [] (int index);
-    Vector operator +(Vector& v);
-    Vector operator -(Vector& v);
-    double operator *(Vector& v);
-    Vector operator *(double& factor);
-    Vector operator /(double& divider);
-    friend std::istream &operator>>(std::istream &stream, Vector &vec);
-    friend std::ostream &operator<<(std::ostream &stream, const Vector &vec);
-
-
+    double mat[SIZE][SIZE];
     /*
      *  Tutaj trzeba wstawic definicje odpowiednich metod publicznych
      */
@@ -34,7 +26,7 @@ public:
  * znalezc w pliku:
  *    ~bk/edu/kpo/zalecenia.txt 
  */
-//std::istream &operator>>(std::istream &stream, Vector &vec);
+std::istream &operator>>(std::istream &stream, Matrix &matrix);
 
 /*
  * To przeciazenie trzeba opisac. Co ono robi. Jaki format
@@ -43,4 +35,4 @@ public:
  * znalezc w pliku:
  *    ~bk/edu/kpo/zalecenia.txt 
  */
-//std::ostream &operator<<(std::ostream &stream, const Vector &vec);
+std::ostream &operator<<(std::ostream &stream, const Matrix &matrix);

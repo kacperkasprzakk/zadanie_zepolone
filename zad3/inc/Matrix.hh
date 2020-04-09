@@ -13,7 +13,6 @@ class Matrix
      *  Tutaj trzeba wstawic definicje odpowiednich pol i metod prywatnych
      */
 public:
-    double mat[SIZE][SIZE];
     /*
      *  Tutaj trzeba wstawic definicje odpowiednich metod publicznych
      */

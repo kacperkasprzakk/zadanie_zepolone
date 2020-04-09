@@ -1,95 +1,86 @@
 #include "Vector.hh"
 #include <iostream>
-
 using namespace std;
 /*
  *  Tutaj nalezy zdefiniowac odpowiednie metody
  *  klasy Vector, ktore zawieraja wiecej kodu
  *  niz dwie linijki.
- *  Mniejsze metody mozna definiwac w ciele klasy.
+ *
+ *Mniejsze metody mozna definiwac w ciele klasy.
  */
-std::istream &operator>>(std::istream &streamIn, Vector &v)
-{
-    for(int i=0; i<SIZE; i++) {
-        if (streamIn.peek() != '|') {
-            streamIn.setstate(ios::failbit);
-            return streamIn;
-        }
-        streamIn.get();
-        if (streamIn.peek() != ' ') {
-            streamIn.setstate(ios::failbit);
-            return streamIn;
-        }
-        streamIn.get();
-        streamIn>>(v.vec[i]);
-        if (streamIn.peek() != ' ') {
-            streamIn.setstate(ios::failbit);
-            return streamIn;
-        }
-        streamIn.get();
-        if (streamIn.peek() != '|') {
-            streamIn.setstate(ios::failbit);
-            return streamIn;
-        }
-        streamIn.get();
-        streamIn.get();
 
-    }
-}
 
-std::ostream &operator << (std::ostream &streamOut, Vector v)
+const double &Vector::operator[](int index) const
 {
-    for (int i = 0; i < SIZE; i++)
+    if(index<0 || index>=SIZE)
     {
-        streamOut << "| " <<v.vec[i]<<" |";
-        streamOut<<endl;
+        cerr<<"Out of range!"<<endl;
+        return 0;
     }
+    return data[index];
+}
+double &Vector::operator[](int index)
+{
+    return const_cast <double &>(const_cast<const Vector *>(this)->operator[](index));
 }
 
-Vector operator +(Vector v1, Vector v2)
+inline Vector Vector::operator+(Vector&  v)
 {
     Vector result;
     for(int i=0; i<SIZE; i++)
     {
-        result.vec[i]=v1.vec[i]+v2.vec[i];
+        result[i]=data[i]+v.data[i];
     }
     return result;
 }
-
-Vector operator -(Vector v1, Vector v2)
+inline Vector Vector::operator-(Vector & v)
 {
     Vector result;
     for(int i=0; i<SIZE; i++)
     {
-        result.vec[i]=v1.vec[i]-v2.vec[i];
+        result[i]=data[i]-v.data[i];
     }
     return result;
 }
-
-Vector operator *(Vector v1, Vector v2)
+inline double Vector::operator*(Vector & v)
+{
+    double result=0;
+    for(int i=0; i<SIZE; i++)
+    {
+        result=result+(data[i]*v.data[i]);
+    }
+    return result;
+}
+inline Vector Vector::operator*(double& factor)
 {
     Vector result;
     for(int i=0; i<SIZE; i++)
     {
-        result.vec[i]=v1.vec[i]*v2.vec[i];
+        result[i]=data[i]*factor;
     }
     return result;
 }
-
-Vector operator *(Vector v1, double factor)
+inline Vector Vector::operator/(double& divider)
 {
     Vector result;
     for(int i=0; i<SIZE; i++)
     {
-        result.vec[i]=v1.vec[i]*factor;
+        result[i]=data[i]/divider;
     }
     return result;
 }
-
-Vector operator /(Vector v1, double factor)
+std::istream &operator>>(std::istream &stream, Vector &vec)
 {
-    Vector result;
-    double divider=1/factor;
-    result=v1*divider;
-    return result;
+    for(int i=0; i<SIZE; i++)
+    {
+        stream>>vec.data[i];
+    }
+}
+std::ostream &operator<<(std::ostream &stream, const Vector &vec)
+{
+    for(int i=0; i<SIZE; i++)
+    {
+        stream<<vec.data[i]<<endl;
+    }
+
 }
