@@ -1,13 +1,18 @@
 #include "Matrix.hh"
+<<<<<<< HEAD
 #include "Vector.hh"
 #include <iostream>
 using namespace std;
+=======
+
+>>>>>>> 9393e5459b0851e2057887e1c8f50ffd301267de
 /*
  *  Tutaj nalezy zdefiniowac odpowiednie metody
  *  klasy Matrix, ktore zawieraja wiecej kodu
  *  niz dwie linijki.
  *  Mniejsze metody mozna definiwac w ciele klasy.
  */
+<<<<<<< HEAD
 std::istream &operator>>(std::istream &stream, Matrix &matrix)
 {
     for(int i=0; i<SIZE; i++)
@@ -74,3 +79,5 @@ Matrix Matrix::transpose()
         }
     }
 }
+=======
+>>>>>>> 9393e5459b0851e2057887e1c8f50ffd301267de

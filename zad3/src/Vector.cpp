@@ -1,7 +1,10 @@
 #include "Vector.hh"
 #include <iostream>
+<<<<<<< HEAD
 #include <iomanip>
 #include <cmath>
+=======
+>>>>>>> 9393e5459b0851e2057887e1c8f50ffd301267de
 using namespace std;
 /*
  *  Tutaj nalezy zdefiniowac odpowiednie metody
@@ -26,7 +29,11 @@ double &Vector::operator[](int index)
     return const_cast <double &>(const_cast<const Vector *>(this)->operator[](index));
 }
 
+<<<<<<< HEAD
 Vector Vector::operator+(Vector&  v)
+=======
+inline Vector Vector::operator+(Vector&  v)
+>>>>>>> 9393e5459b0851e2057887e1c8f50ffd301267de
 {
     Vector result;
     for(int i=0; i<SIZE; i++)
@@ -35,7 +42,11 @@ Vector Vector::operator+(Vector&  v)
     }
     return result;
 }
+<<<<<<< HEAD
 Vector Vector::operator-(Vector & v)
+=======
+inline Vector Vector::operator-(Vector & v)
+>>>>>>> 9393e5459b0851e2057887e1c8f50ffd301267de
 {
     Vector result;
     for(int i=0; i<SIZE; i++)
@@ -44,7 +55,11 @@ Vector Vector::operator-(Vector & v)
     }
     return result;
 }
+<<<<<<< HEAD
 double Vector::operator*(Vector & v)
+=======
+inline double Vector::operator*(Vector & v)
+>>>>>>> 9393e5459b0851e2057887e1c8f50ffd301267de
 {
     double result=0;
     for(int i=0; i<SIZE; i++)
@@ -53,7 +68,11 @@ double Vector::operator*(Vector & v)
     }
     return result;
 }
+<<<<<<< HEAD
 Vector Vector::operator*(double& factor)
+=======
+inline Vector Vector::operator*(double& factor)
+>>>>>>> 9393e5459b0851e2057887e1c8f50ffd301267de
 {
     Vector result;
     for(int i=0; i<SIZE; i++)
@@ -62,7 +81,11 @@ Vector Vector::operator*(double& factor)
     }
     return result;
 }
+<<<<<<< HEAD
 Vector Vector::operator/(double& divider)
+=======
+inline Vector Vector::operator/(double& divider)
+>>>>>>> 9393e5459b0851e2057887e1c8f50ffd301267de
 {
     Vector result;
     for(int i=0; i<SIZE; i++)
@@ -82,6 +105,7 @@ std::ostream &operator<<(std::ostream &stream, const Vector &vec)
 {
     for(int i=0; i<SIZE; i++)
     {
+<<<<<<< HEAD
         stream<<setw(5);
         stream<<vec.data[i]<<" ";
     }
@@ -92,4 +116,9 @@ double Vector::length()
     double result;
     result=sqrt(data[0]*data[0]+data[1]*data[1]+data[2]*data[2]);
     return result;
+=======
+        stream<<vec.data[i]<<endl;
+    }
+
+>>>>>>> 9393e5459b0851e2057887e1c8f50ffd301267de
 }

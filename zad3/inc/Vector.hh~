@@ -1,27 +1,19 @@
 #pragma once
 
+#include "Size.hh"
 #include <iostream>
-<<<<<<< HEAD
-#include "Matrix.hh"
-#include  "Vector.hh"
-=======
->>>>>>> 9393e5459b0851e2057887e1c8f50ffd301267de
 
 /*
  *  Tutaj trzeba opisac klase. Jakie pojecie modeluje ta klasa
  *  i jakie ma glowne cechy.
  */
-class SystemOfLinearEquations
+class Vector
 {
-<<<<<<< HEAD
-    /*Matrix A;
-    Vector x,b; */
-=======
     /*
      *  Tutaj trzeba wstawic definicje odpowiednich pol i metod prywatnych
      */
->>>>>>> 9393e5459b0851e2057887e1c8f50ffd301267de
 public:
+    double vec[SIZE];
     /*
      *  Tutaj trzeba wstawic definicje odpowiednich metod publicznych
      */
@@ -34,7 +26,7 @@ public:
  * znalezc w pliku:
  *    ~bk/edu/kpo/zalecenia.txt 
  */
-std::istream &operator>>(std::istream &stream, SystemOfLinearEquations &system);
+std::istream &operator>>(std::istream &stream, Vector &vec);
 
 /*
  * To przeciazenie trzeba opisac. Co ono robi. Jaki format
@@ -43,5 +35,10 @@ std::istream &operator>>(std::istream &stream, SystemOfLinearEquations &system);
  * znalezc w pliku:
  *    ~bk/edu/kpo/zalecenia.txt 
  */
-std::ostream &operator<<(std::ostream &stream,
-                         const SystemOfLinearEquations &system);
+std::ostream &operator<<(std::ostream &stream, const Vector vec);
+Vector operator +(Vector  v1, Vector v2);
+Vector operator -(Vector  v1, Vector v2);
+Vector operator *(Vector  v1, Vector v2);
+Vector operator *(Vector  v1, double factor);
+Vector operator /(Vector  v1, double divider);
+

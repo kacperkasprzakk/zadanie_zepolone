@@ -2,7 +2,10 @@
 #include "Vector.hh"
 #include "Matrix.hh"
 #include "SystemOfLinearEquations.hh"
+<<<<<<< HEAD
 #include "Size.hh"
+=======
+>>>>>>> 9393e5459b0851e2057887e1c8f50ffd301267de
 
 using namespace std;
 
@@ -15,6 +18,7 @@ using namespace std;
 
 int main()
 {
+<<<<<<< HEAD
     bool zero;
     double main_determinant;
     double dets[SIZE];
@@ -68,3 +72,15 @@ int main()
  * wykonania rozszerzenia tego zadania tzn. udało mi się ustawić odległości, ale nie wiem jak zrobić | | w odpowiendnim
  * układzie, a chętnie bym zobaczył rozwiązanie tego rozszerzenia :)
  * */
+=======
+    Vector v1, v2;
+    cin>>v1;
+    cin>>v2;
+    cout<<(v1+v2);
+    SystemOfLinearEquations system; // To tylko przykladowe definicje zmiennej
+
+    cout << endl
+         << " Start programu " << endl
+         << endl;
+}
+>>>>>>> 9393e5459b0851e2057887e1c8f50ffd301267de
