@@ -20,7 +20,16 @@ public:
     Vector operator /(double& divider);
     friend std::istream &operator>>(std::istream &stream, Vector &vec);
     friend std::ostream &operator<<(std::ostream &stream, const Vector &vec);
+<<<<<<< HEAD
     double length();
+=======
+<<<<<<< HEAD
+    double length();
+=======
+
+
+>>>>>>> 9393e5459b0851e2057887e1c8f50ffd301267de
+>>>>>>> 0727b52ad5c697a5c975fe30f2c0a0869c823620
     /*
      *  Tutaj trzeba wstawic definicje odpowiednich metod publicznych
      */
@@ -42,4 +51,12 @@ public:
  * znalezc w pliku:
  *    ~bk/edu/kpo/zalecenia.txt 
  */
+<<<<<<< HEAD
 //std::ostream &operator<<(std::ostream &stream, const Vector &vec);
+=======
+<<<<<<< HEAD
+//std::ostream &operator<<(std::ostream &stream, const Vector &vec);
+=======
+//std::ostream &operator<<(std::ostream &stream, const Vector &vec);
+>>>>>>> 9393e5459b0851e2057887e1c8f50ffd301267de
+>>>>>>> 0727b52ad5c697a5c975fe30f2c0a0869c823620

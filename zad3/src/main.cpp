@@ -2,7 +2,14 @@
 #include "Vector.hh"
 #include "Matrix.hh"
 #include "SystemOfLinearEquations.hh"
+<<<<<<< HEAD
 #include "Size.hh"
+=======
+<<<<<<< HEAD
+#include "Size.hh"
+=======
+>>>>>>> 9393e5459b0851e2057887e1c8f50ffd301267de
+>>>>>>> 0727b52ad5c697a5c975fe30f2c0a0869c823620
 
 using namespace std;
 
@@ -15,6 +22,10 @@ using namespace std;
 
 int main()
 {
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> 0727b52ad5c697a5c975fe30f2c0a0869c823620
     bool zero;
     double main_determinant;
     double dets[SIZE];
@@ -67,4 +78,20 @@ int main()
  * Nie wykorzystałem pliku systemoflinearequations, nie wykonałem przeciążenia () w macierzy. Podjąłem próbę
  * wykonania rozszerzenia tego zadania tzn. udało mi się ustawić odległości, ale nie wiem jak zrobić | | w odpowiendnim
  * układzie, a chętnie bym zobaczył rozwiązanie tego rozszerzenia :)
+<<<<<<< HEAD
  * */
+=======
+ * */
+=======
+    Vector v1, v2;
+    cin>>v1;
+    cin>>v2;
+    cout<<(v1+v2);
+    SystemOfLinearEquations system; // To tylko przykladowe definicje zmiennej
+
+    cout << endl
+         << " Start programu " << endl
+         << endl;
+}
+>>>>>>> 9393e5459b0851e2057887e1c8f50ffd301267de
+>>>>>>> 0727b52ad5c697a5c975fe30f2c0a0869c823620

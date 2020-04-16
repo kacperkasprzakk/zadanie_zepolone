@@ -1,13 +1,27 @@
 #include "Matrix.hh"
+<<<<<<< HEAD
 #include "Vector.hh"
 #include <iostream>
 using namespace std;
+=======
+<<<<<<< HEAD
+#include "Vector.hh"
+#include <iostream>
+using namespace std;
+=======
+
+>>>>>>> 9393e5459b0851e2057887e1c8f50ffd301267de
+>>>>>>> 0727b52ad5c697a5c975fe30f2c0a0869c823620
 /*
  *  Tutaj nalezy zdefiniowac odpowiednie metody
  *  klasy Matrix, ktore zawieraja wiecej kodu
  *  niz dwie linijki.
  *  Mniejsze metody mozna definiwac w ciele klasy.
  */
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> 0727b52ad5c697a5c975fe30f2c0a0869c823620
 std::istream &operator>>(std::istream &stream, Matrix &matrix)
 {
     for(int i=0; i<SIZE; i++)
@@ -31,6 +45,7 @@ double Matrix::determinant()
                          vec[2][2] * vec[1][0] * vec[0][1]);
 
 
+<<<<<<< HEAD
     return  result; //nie jestem niestety w stanie przerobić tak szybko tego wyznacznika, źle zaczałem i niestety, ale to się ciągnie
 }
 double  Matrix::laplace()
@@ -38,6 +53,11 @@ double  Matrix::laplace()
     double result;
     return result;
 }
+=======
+    return  result;
+}
+
+>>>>>>> 0727b52ad5c697a5c975fe30f2c0a0869c823620
 double Matrix::other_dets(Vector vector, int n)
 {
         double  result;
@@ -78,6 +98,7 @@ Matrix Matrix::transpose()
         }
     }
 }
+<<<<<<< HEAD
 Matrix Matrix::hadamard(Matrix m2)
 {
     Matrix result;
@@ -89,3 +110,7 @@ Matrix Matrix::hadamard(Matrix m2)
         }
     }
 }
+=======
+=======
+>>>>>>> 9393e5459b0851e2057887e1c8f50ffd301267de
+>>>>>>> 0727b52ad5c697a5c975fe30f2c0a0869c823620
