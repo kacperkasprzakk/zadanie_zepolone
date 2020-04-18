@@ -31,13 +31,13 @@ public:
 template <typename T, int SIZE>
 class Matrix
 {
-    T vec[SIZE];
+    Vector<T, SIZE> vec[SIZE];
 public:
     Matrix();
     T operator()(int i, int j) const;
     T operator()(int i, int j);
-    friend std::istream &operator>>(std::istream &stream, Matrix &matrix);
-    friend std::ostream &operator<<(std::ostream &stream, const Matrix &matrix);
+    std::istream &operator>>(std::istream &stream);
+    std::ostream &operator<<(std::ostream &stream);
     Vector<T, SIZE> operator *(Vector<T, SIZE> &arg);
     Matrix<T, SIZE> transpose();
     Matrix<T, SIZE> operator =(Matrix<T, SIZE>& mat);
@@ -90,48 +90,48 @@ Matrix<T, SIZE>::Matrix()
 template <typename T, int SIZE>
 T  Matrix<T, SIZE>::operator()(int i, int j)
 {
-    if(i<0 || i>SIZE)
+    if(i<0 || i>SIZE || j<0 || j>SIZE)
     {
         std::cerr<<"POZA ZAKRESEM"<<std::endl;
         return 0;
     }
     else
     {
-        return vec(i,j);
+        return &vec[i][j];
     }
 }
 template <typename T, int SIZE>
 T  Matrix<T, SIZE>::operator()(int i, int j) const
 {
-    if(i<0 || i>SIZE)
+    if(i<0 || i>SIZE || j<0 || j>SIZE)
     {
         std::cerr<<"POZA ZAKRESEM"<<std::endl;
         return 0;
     }
     else
     {
-        return vec(i,j);
+        return vec[i][j];
     }
 }
 template <typename T, int SIZE>
-std::istream &operator>>(std::istream &stream, Matrix<T,SIZE> &matrix)
+std::istream Matrix<T, SIZE>::operator>>(std::istream &stream)
 {
     for(int i=0; i<SIZE; i++)
     {
         for(int j=0; j<SIZE; j++)
         {
-            stream>>T(i,j);
+            stream>>vec[i][j];
         }
     }
 }
 template <typename T, int SIZE>
-std::istream &operator<<(std::ostream &stream, Matrix<T,SIZE> &matrix)
+std::istream Matrix<T, SIZE>::operator<<(std::ostream &stream)
 {
     for(int i=0; i<SIZE; i++)
     {
         for(int j=0; j<SIZE; j++)
         {
-            stream<<T(i,j);
+            stream<<vec[i][j];
         }
     }
 }

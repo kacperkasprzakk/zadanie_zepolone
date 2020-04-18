@@ -38,8 +38,8 @@ public:
     Vector<T, SIZE> operator +(const Vector<T, SIZE> &arg) const;
     T operator[](int i) const;
     T operator[](int i);
-    friend std::istream &operator>>(std::istream &stream, T &vec);
-    friend std::ostream &operator<<(std::ostream &stream, const T &vec);
+    std::istream &operator>>(std::istream &stream);
+    std::ostream &operator<<(std::ostream &stream);
     Vector<T, SIZE> operator +(Vector<T, SIZE> &arg);
     Vector<T, SIZE> operator -(Vector<T, SIZE> &arg);
     Vector<T, SIZE> operator *(double factor);
@@ -141,25 +141,25 @@ T  Vector<T, SIZE>::operator[](int i)
     }
     else
     {
-        return data[i];
+        return &data[i];
     }
 }
 
 template <typename T, int SIZE>
-std::istream &operator>>(std::istream &stream, T &vec)
+std::istream Vector<T,SIZE>::operator>>(std::istream &stream)
 {
     for(int i=0; i<SIZE; i++)
     {
-        stream>>vec[i];
+        stream>>data[i];
     }
 }
 template <typename T, int SIZE>
-std::ostream &operator<<(std::ostream &stream, const T &vec)
+std::ostream Vector<T, SIZE>::operator<<(std::ostream &stream)
 {
     for(int i=0; i<SIZE; i++)
     {
         stream<<std::setw(5);
-        stream<<vec[i];
+        stream<<data[i];
     }
     std::cout<<std::endl;
 }
