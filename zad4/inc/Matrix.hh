@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Size.hh"
+#include "Complex.h"
 #include <iostream>
 #include "Vector.hh"
 
@@ -40,8 +41,48 @@ public:
     std::ostream &operator<<(std::ostream &stream);
     Vector<T, SIZE> operator *(Vector<T, SIZE> &arg);
     Matrix<T, SIZE> transpose();
+    T determinant();
     Matrix<T, SIZE> operator =(Matrix<T, SIZE>& mat);
 };
+template <typename T, int SIZE>
+T Matrix<T, SIZE>::determinant()
+{
+    bool changed= false;
+    Matrix<T, SIZE> copy=*this;
+    T result=1;
+    T ratio;
+    int column=0;
+    for(int i=0; i<SIZE; i++)
+    {
+        if(column==i)
+        {
+            for(int j=column; j<SIZE-1; j++)
+            {
+                if(copy.vec[column][column]==0 && column+1<SIZE)
+                {
+                    Vector<T, SIZE> temporary=copy.vec[column];
+                    copy.vec[column]=copy.vec[column+1];
+                    copy.vec[column+1]=temporary;
+                    changed=!changed;
+                }
+                ratio = copy.vec[j + 1][column] / copy.vec[column][column];
+                auto tmp = copy.vec[column] * ratio;
+                copy.vec[j + 1] = (copy.vec[j + 1]) - tmp;
+            }
+            column++;
+        }
+    }
+    for(int i=0; i<SIZE; i++)
+    {
+        result=result*copy.vec[i][i];
+    }
+    if(changed==true)
+    {
+        result=result*(-1);
+    }
+    return  result;
+
+}
 template <typename T, int SIZE>
 Matrix<T, SIZE> Matrix<T, SIZE>::operator=(Matrix<T, SIZE> &mat)
 {
@@ -50,7 +91,6 @@ Matrix<T, SIZE> Matrix<T, SIZE>::operator=(Matrix<T, SIZE> &mat)
         vec(i)=mat(i);
     }
 }
-
 template <typename T, int SIZE>
 Matrix<T, SIZE> Matrix<T, SIZE>::transpose()
 {

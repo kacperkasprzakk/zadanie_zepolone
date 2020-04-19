@@ -1,4 +1,5 @@
 #include "Vector.hh"
+#include "Vector.hh"
 #include <iostream>
 #include <iomanip>
 #include <cmath>

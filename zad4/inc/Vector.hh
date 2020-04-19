@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Size.hh"
+#include "Complex.h"
 #include <iostream>
 #include <iomanip>
 #include <cmath>
