@@ -39,8 +39,24 @@ public:
     Vector<T, SIZE> operator +(const Vector<T, SIZE> &arg) const;
     T operator[](int i) const;
     T operator[](int i);
-    std::istream &operator>>(std::istream &stream);
-    std::ostream &operator<<(std::ostream &stream);
+    friend std::istream &operator>>(std::istream &stream, Vector<T,SIZE>& vec)
+    {
+        for(int i=0; i<SIZE; i++)
+        {
+            stream>>vec[i];
+        }
+        return  stream;
+    }
+    friend std::ostream &operator<<(std::ostream &stream, const Vector<T,SIZE>& vec)
+    {
+        for(int i=0; i<SIZE; i++)
+        {
+            stream<<std::setw(5);
+            stream<<vec[i];
+        }
+        std::cout<<std::endl;
+        return stream;
+    }
     Vector<T, SIZE> operator +(Vector<T, SIZE> &arg);
     Vector<T, SIZE> operator -(Vector<T, SIZE> &arg);
     Vector<T, SIZE> operator *(double factor);
@@ -110,7 +126,7 @@ Vector<T,SIZE> Vector<T, SIZE>::operator+(Vector<T, SIZE> &arg)
     return  result;
 }
 
-
+/*
 template <typename T, int SIZE>
 Vector<T, SIZE>::Vector()
 {
@@ -118,7 +134,7 @@ Vector<T, SIZE>::Vector()
     {
         data[i]=0;
     }
-}
+} */
 template <typename T, int SIZE>
 T  Vector<T, SIZE>::operator[](int i) const
 {
@@ -146,13 +162,10 @@ T  Vector<T, SIZE>::operator[](int i)
     }
 }
 
-template <typename T, int SIZE>
+/*template <typename T, int SIZE>
 std::istream Vector<T,SIZE>::operator>>(std::istream &stream)
 {
-    for(int i=0; i<SIZE; i++)
-    {
-        stream>>data[i];
-    }
+
 }
 template <typename T, int SIZE>
 std::ostream Vector<T, SIZE>::operator<<(std::ostream &stream)
@@ -163,7 +176,7 @@ std::ostream Vector<T, SIZE>::operator<<(std::ostream &stream)
         stream<<data[i];
     }
     std::cout<<std::endl;
-}
+} */
 /*
  * To przeciazenie trzeba opisac. Co ono robi. Jaki format
  * danych akceptuje. Jakie jest znaczenie parametrow itd.

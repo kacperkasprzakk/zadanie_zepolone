@@ -96,7 +96,7 @@ Complex operator^(Complex arg1, Complex arg2)
     }
     return result;
 }
-istream & operator >>(istream & streamIn,Complex &arg1)
+std::istream & operator >>(std::istream & streamIn,Complex &arg1)
 {
 
         if (streamIn.peek() != '(')
@@ -126,7 +126,7 @@ istream & operator >>(istream & streamIn,Complex &arg1)
                     streamIn.get();
                     streamIn.get();
 }
-ostream & operator <<(ostream & streamOut,Complex arg1)
+std::ostream & operator <<(std::ostream & streamOut,Complex arg1)
 {
         streamOut<<"(";
         streamOut<<arg1.re;

@@ -1,6 +1,7 @@
 #include <iostream>
 #include "Vector.hh"
 #include "Matrix.hh"
+#include "Complex.h"
 #include "SystemOfLinearEquations.hh"
 #include "Size.hh"
 
@@ -15,50 +16,13 @@ using namespace std;
 
 int main()
 {
-    /*bool zero;
-    double main_determinant;
-    double dets[SIZE];
-    int counter=0;
-    Matrix A;
-    Vector b, epsilon, x;
-    cin>>A;
+    Complex a,b;
+    cin>>a;
     cin>>b;
-    A.transpose();
-    main_determinant=A.determinant();
-    for(int i=0; i<SIZE; i++)
-    {
-        dets[i] = A.other_dets(b, i);
-    }
-    if(main_determinant)
-    {
-        for(int i=0; i<SIZE; i++)
-        {
-            x[i]=dets[i]/main_determinant;
-            cout<<"x_"<<i+1<<"="<<x[i]<<endl;
-        }
-    }
-
-    else
-    {
-        while(counter<SIZE && zero!=true)
-        {
-            if(dets[counter]==0)
-            {
-                zero=true;
-            }
-            counter++;
-        }
-        if(zero)
-        {
-           cout<<"Infinity number of solutions";
-        }
-        else
-        {
-            cout<<"Contradiction";
-        }
-    }
-    epsilon=A*x-b;
-    cout<<epsilon.length(); */
+    a+b;
+    /*Matrix<Complex, SIZE> mat;
+    cin>>mat;
+    cout<<mat.determinant(); */
     return 0;
 }
 

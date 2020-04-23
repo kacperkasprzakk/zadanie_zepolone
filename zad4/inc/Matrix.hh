@@ -34,11 +34,31 @@ class Matrix
 {
     Vector<T, SIZE> vec[SIZE];
 public:
-    Matrix();
+    //Matrix();
     T operator()(int i, int j) const;
     T operator()(int i, int j);
-    std::istream &operator>>(std::istream &stream);
-    std::ostream &operator<<(std::ostream &stream);
+    friend std::istream &operator>>(std::istream &stream, Matrix<T,SIZE>& mat)
+    {
+        for(int i=0; i<SIZE; i++)
+        {
+            for(int j=0; j<SIZE; j++)
+            {
+                stream>>mat.vec[i][j];
+            }
+        }
+        return stream;
+    }
+    friend std::ostream &operator<<(std::ostream &stream, const Matrix<T,SIZE>& mat)
+    {
+        for(int i=0; i<SIZE; i++)
+        {
+            for(int j=0; j<SIZE; j++)
+            {
+                stream<<mat.vec[i][j];
+            }
+        }
+        return  stream;
+    }
     Vector<T, SIZE> operator *(Vector<T, SIZE> &arg);
     Matrix<T, SIZE> transpose();
     T determinant();
@@ -115,7 +135,7 @@ Vector<T, SIZE> Matrix<T, SIZE>::operator*(Vector<T, SIZE> &arg)
             result[i] =result[i]+vec(i,j)*arg[j];
         }
     }
-}
+}/*
 template <typename T, int SIZE>
 Matrix<T, SIZE>::Matrix()
 {
@@ -123,10 +143,10 @@ Matrix<T, SIZE>::Matrix()
     {
         for(int j=0; j<SIZE; j++)
         {
-            vec(i,j)=0;
+            vec[i][j]=0;
         }
     }
-}
+}*/
 template <typename T, int SIZE>
 T  Matrix<T, SIZE>::operator()(int i, int j)
 {
@@ -151,28 +171,6 @@ T  Matrix<T, SIZE>::operator()(int i, int j) const
     else
     {
         return vec[i][j];
-    }
-}
-template <typename T, int SIZE>
-std::istream Matrix<T, SIZE>::operator>>(std::istream &stream)
-{
-    for(int i=0; i<SIZE; i++)
-    {
-        for(int j=0; j<SIZE; j++)
-        {
-            stream>>vec[i][j];
-        }
-    }
-}
-template <typename T, int SIZE>
-std::istream Matrix<T, SIZE>::operator<<(std::ostream &stream)
-{
-    for(int i=0; i<SIZE; i++)
-    {
-        for(int j=0; j<SIZE; j++)
-        {
-            stream<<vec[i][j];
-        }
     }
 }
 
