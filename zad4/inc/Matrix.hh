@@ -35,6 +35,7 @@ class Matrix
     Vector<T, SIZE> vec[SIZE];
 public:
     //Matrix();
+    T other_dets(Vector<T,SIZE> vector, int n);
     T operator()(int i, int j) const;
     T operator()(int i, int j);
     friend std::istream &operator>>(std::istream &stream, Matrix<T,SIZE>& mat)
@@ -43,7 +44,7 @@ public:
         {
             for(int j=0; j<SIZE; j++)
             {
-                stream>>mat.vec[i][j];
+                stream>>(mat.vec[i][j]);
             }
         }
         return stream;
@@ -64,6 +65,20 @@ public:
     T determinant();
     Matrix<T, SIZE> operator =(Matrix<T, SIZE>& mat);
 };
+template <typename T, int SIZE>
+T Matrix<T,SIZE>::other_dets(Vector<T, SIZE> vector, int n)
+{
+    T  result;
+    if(n>=SIZE)
+    {
+        cerr<<"OUT OF RANGE IN OTHER_DETERMINANTS FUNCTION";
+    }
+    Matrix copy;
+    copy=*this;
+    copy.vec[n]=vector;
+    result=copy.determinant();
+    return result;
+}
 template <typename T, int SIZE>
 T Matrix<T, SIZE>::determinant()
 {

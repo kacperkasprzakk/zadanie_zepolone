@@ -96,6 +96,15 @@ Complex operator^(Complex arg1, Complex arg2)
     }
     return result;
 }
+bool operator==(Complex arg1, Complex arg2)
+{
+    bool equal=false;
+    if((arg1.re+0.1>=arg2.re and arg1.re-0.1<=arg2.re) and (arg1.im+0.1>=arg2.im and arg1.im+-0.1<=arg2.im))
+    {
+        equal=true;
+    }
+    return equal;
+}
 std::istream & operator >>(std::istream & streamIn,Complex &arg1)
 {
 
@@ -166,6 +175,16 @@ Complex operator-=(Complex &arg1, Complex arg2)
     arg1.re=arg1.re-arg2.re;
     arg1.im=arg1.im-arg2.im;
     return arg1;
+}
+bool zero(Complex arg1)
+{
+    if(arg1.re==0 && arg1.im==0)
+    {
+        return true;
+    } else
+    {
+        return false;
+    }
 }
 //
 // Created by User on 05.03.2020.

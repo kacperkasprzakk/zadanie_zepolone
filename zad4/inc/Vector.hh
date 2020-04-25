@@ -154,7 +154,6 @@ T  Vector<T, SIZE>::operator[](int i)
     if(i<0 || i>SIZE)
     {
         std::cerr<<"POZA ZAKRESEM"<<std::endl;
-        return 0;
     }
     else
     {
