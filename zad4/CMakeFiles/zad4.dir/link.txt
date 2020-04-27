@@ -1,0 +1,1 @@
+/usr/bin/c++     CMakeFiles/zad4.dir/src/Complex.cpp.o CMakeFiles/zad4.dir/src/Matrix.cpp.o CMakeFiles/zad4.dir/src/SystemOfLinearEquations.cpp.o CMakeFiles/zad4.dir/src/Vector.cpp.o CMakeFiles/zad4.dir/src/main.cpp.o  -o zad4 

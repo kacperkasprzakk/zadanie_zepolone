@@ -37,7 +37,7 @@ public:
     //Matrix();
     T other_dets(Vector<T,SIZE> vector, int n);
     T operator()(int i, int j) const;
-    T operator()(int i, int j);
+    T &operator()(int i, int j);
     friend std::istream &operator>>(std::istream &stream, Matrix<T,SIZE>& mat)
     {
         for(int i=0; i<SIZE; i++)
@@ -163,7 +163,7 @@ Matrix<T, SIZE>::Matrix()
     }
 }*/
 template <typename T, int SIZE>
-T  Matrix<T, SIZE>::operator()(int i, int j)
+T  &Matrix<T, SIZE>::operator()(int i, int j)
 {
     if(i<0 || i>SIZE || j<0 || j>SIZE)
     {

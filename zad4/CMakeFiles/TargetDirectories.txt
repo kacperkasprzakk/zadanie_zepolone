@@ -1,0 +1,3 @@
+/home/kacper/zad4/CMakeFiles/rebuild_cache.dir
+/home/kacper/zad4/CMakeFiles/zad4.dir
+/home/kacper/zad4/CMakeFiles/edit_cache.dir

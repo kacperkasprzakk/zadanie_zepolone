@@ -5,7 +5,6 @@
 #include <iostream>
 #include <iomanip>
 #include <cmath>
-
 /*
  *  *  Tutaj trzeba opisac klase. Jakie pojecie modeluje ta klasa
  *  i jakie ma glowne cechy.
@@ -36,9 +35,9 @@ class Vector
     T data[SIZE];
 public:
     Vector();
-    Vector<T, SIZE> operator +(const Vector<T, SIZE> &arg) const;
+    Vector<T, SIZE> operator +(const Vector<T, SIZE> &arg);
     T operator[](int i) const;
-    T operator[](int i);
+    T &operator[](int i);
     friend std::istream &operator>>(std::istream &stream, Vector<T,SIZE>& vec)
     {
         for(int i=0; i<SIZE; i++)
@@ -59,9 +58,9 @@ public:
     }
     Vector<T, SIZE> operator +(Vector<T, SIZE> &arg);
     Vector<T, SIZE> operator -(Vector<T, SIZE> &arg);
-    Vector<T, SIZE> operator *(double factor);
+    Vector<T, SIZE> operator *(T factor);
     double operator *(Vector<T,SIZE>& v);
-    Vector<T, SIZE> operator /(double divider);
+    Vector<T, SIZE> operator /(T divider);
     double length();
 };
 template <typename T, int SIZE>
@@ -85,7 +84,7 @@ double Vector<T, SIZE>::length()
     return   sqrt(result);
 }
 template <typename T, int SIZE>
-Vector<T, SIZE> Vector<T,SIZE>::operator*(double factor)
+Vector<T, SIZE> Vector<T,SIZE>::operator*(T factor)
 {
     Vector<double, SIZE> result;
     for(int i=0; i<SIZE; i++)
@@ -95,7 +94,7 @@ Vector<T, SIZE> Vector<T,SIZE>::operator*(double factor)
     return  result;
 }
 template <typename T, int SIZE>
-Vector<T, SIZE> Vector<T,SIZE>::operator/(double divider)
+Vector<T, SIZE> Vector<T,SIZE>::operator/(T divider)
 {
     Vector<T, SIZE> result;
     for(int i=0; i<SIZE; i++)
@@ -125,7 +124,6 @@ Vector<T,SIZE> Vector<T, SIZE>::operator+(Vector<T, SIZE> &arg)
     }
     return  result;
 }
-
 /*
 template <typename T, int SIZE>
 Vector<T, SIZE>::Vector()
@@ -149,7 +147,7 @@ T  Vector<T, SIZE>::operator[](int i) const
     }
 }
 template <typename T, int SIZE>
-T  Vector<T, SIZE>::operator[](int i)
+T  &Vector<T, SIZE>::operator[](int i)
 {
     if(i<0 || i>SIZE)
     {
