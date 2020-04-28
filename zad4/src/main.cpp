@@ -29,7 +29,7 @@ int main()
     {
         dets[i] = A.other_dets(b, i);
     }
-    if(zero(dets[0]))
+    if(abs(dets[0]))
     {
         for(int i=1; i<SIZE+1; i++)
         {
@@ -41,7 +41,7 @@ int main()
     {
         while(counter<SIZE+1 && zero!=true)
         {
-            if(zero(dets[counter]))
+            if(abs(dets[counter]))
             {
                 zero=true;
             }
@@ -59,12 +59,7 @@ int main()
     epsilon=A*x-b;
     cout<<epsilon.length();
     return 0;
-}
-
-
-
-    return 0;
-}
+    }
 
 /* INFORMACJE DOTYCZĄCE PROGRAMU
  * Macierz A oraz wektor b odpowiadają macierzy i wektorowi we wzorze z polecenia

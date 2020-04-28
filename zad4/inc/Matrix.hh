@@ -93,7 +93,7 @@ T Matrix<T, SIZE>::determinant()
         {
             for(int j=column; j<SIZE-1; j++)
             {
-                if(copy.vec[column][column]==0 && column+1<SIZE)
+                if(abs(copy.vec[column][column])==0 && column+1<SIZE)
                 {
                     Vector<T, SIZE> temporary=copy.vec[column];
                     copy.vec[column]=copy.vec[column+1];
@@ -134,7 +134,7 @@ Matrix<T, SIZE> Matrix<T, SIZE>::transpose()
     {
         for(int j=0; j<SIZE; j++)
         {
-            copy(i,j)=*this(j,i);
+            copy.vec[i][j] =vec[j][i];
         }
     }
     return copy;

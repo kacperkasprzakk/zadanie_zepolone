@@ -4,6 +4,7 @@
 
 #include "Complex.h"
 #include <iostream>
+#include <cmath>
 #include <fstream>
 using namespace std;
 
@@ -135,7 +136,7 @@ std::istream & operator >>(std::istream & streamIn,Complex &arg1)
                     streamIn.get();
                     streamIn.get();
 }
-std::ostream & operator <<(std::ostream & streamOut,Complex arg1)
+std::ostream & operator <<(std::ostream & streamOut,Complex &arg1)
 {
         streamOut<<"(";
         streamOut<<arg1.re;
@@ -176,15 +177,29 @@ Complex operator-=(Complex &arg1, Complex arg2)
     arg1.im=arg1.im-arg2.im;
     return arg1;
 }
-bool zero(Complex arg1)
+double abs(Complex arg1)
 {
-    if(arg1.re==0 && arg1.im==0)
+    if(sqrt(arg1.re*arg1.re+arg1.im*arg1.im)<0.0000001)
     {
-        return true;
+        return 0.0;
     } else
     {
-        return false;
+        return sqrt(arg1.re*arg1.re+arg1.im*arg1.im);
     }
+}
+Complex operator *(Complex arg1, double factor)
+{
+    Complex result;
+    result.re=arg1.re*factor;
+    result.im=arg1.im*factor;
+    return result;
+}
+Complex operator /(Complex arg1, double divider)
+{
+    Complex result;
+    double div=1/divider;
+    result=arg1*div;
+    return result;
 }
 //
 // Created by User on 05.03.2020.

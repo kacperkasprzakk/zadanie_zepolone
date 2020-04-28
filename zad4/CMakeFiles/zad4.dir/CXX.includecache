@@ -11,6 +11,8 @@ Complex.h
 /home/kacper/zad4/src/Complex.h
 iostream
 -
+cmath
+-
 fstream
 -
 

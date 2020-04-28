@@ -76,7 +76,7 @@ double Vector<T, SIZE>::operator*(Vector<T, SIZE> &v)
 template <typename T, int SIZE>
 double Vector<T, SIZE>::length()
 {
-    double result=0;
+    T result=0;
     for(int i=0; i<SIZE; i++)
     {
         result=result+data[i]*data[i];
