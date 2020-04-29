@@ -22,10 +22,13 @@ int main()
     Vector<Complex, SIZE> epsilon;
     Vector<Complex, SIZE> x;
     Matrix<Complex, SIZE> A;
+    Complex dets[SIZE+1];
     cin>>A;
-    cin>>b;
+    //cin>>b;
     A.transpose();
-    cout<<A.determinant();
+    cout<<A<<endl;
+    dets[0]=A.determinant();
+    cout<<dets[0];
     /*Complex dets[SIZE+1];
     dets[0]=A.determinant();
     for(int i=1; i<SIZE+1; i++)

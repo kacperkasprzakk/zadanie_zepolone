@@ -138,7 +138,6 @@ T  Vector<T, SIZE>::operator[](int i) const
     if(i<0 || i>SIZE)
     {
         std::cerr<<"POZA ZAKRESEM"<<std::endl;
-        return 0;
     }
     else
     {

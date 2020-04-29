@@ -42,10 +42,7 @@ public:
     {
         for(int i=0; i<SIZE; i++)
         {
-            for(int j=0; j<SIZE; j++)
-            {
-                stream>>(mat.vec[i][j]);
-            }
+            stream>>mat.vec[i];
         }
         return stream;
     }
@@ -53,10 +50,7 @@ public:
     {
         for(int i=0; i<SIZE; i++)
         {
-            for(int j=0; j<SIZE; j++)
-            {
-                stream<<mat.vec[i][j];
-            }
+                stream<<mat.vec[i];
         }
         return  stream;
     }
@@ -136,7 +130,7 @@ Matrix<T, SIZE> Matrix<T, SIZE>::transpose()
     {
         for(int j=0; j<SIZE; j++)
         {
-            copy.vec[i][j] =vec[j][i];
+            copy.vec[i][j]=vec[j][i];
         }
     }
     return copy;

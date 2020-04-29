@@ -136,7 +136,7 @@ std::istream & operator >>(std::istream & streamIn,Complex &arg1)
                     streamIn.get();
                     streamIn.get();
 }
-std::ostream & operator <<(std::ostream & streamOut,Complex &arg1)
+std::ostream & operator <<(std::ostream & streamOut,Complex arg1)
 {
         streamOut<<"(";
         streamOut<<arg1.re;
@@ -149,17 +149,6 @@ std::ostream & operator <<(std::ostream & streamOut,Complex &arg1)
         }
         streamOut<<arg1.im;
         streamOut<<"i)";
-}
-int compare(Complex arg1, Complex arg2)//funkcja porównuje dwie liczby zespolone
-{
-    if((arg1.re==arg2.re and arg1.im==arg2.im) or ((arg1.re+0.1>=arg2.re and arg1.re-0.1<=arg2.re) and (arg1.im+0.1>=arg2.im and arg1.im+-0.1<=arg2.im)))
-    {
-        return 1;
-    }
-    else
-    {
-        return 0;
-    }
 }
 
 
