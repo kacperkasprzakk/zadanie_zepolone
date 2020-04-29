@@ -18,18 +18,21 @@ int main()
 {
     bool zero;
     int counter=1;
-    Vector<Complex, SIZE> b, epsilon, x;
+    Vector<Complex, SIZE> b;
+    Vector<Complex, SIZE> epsilon;
+    Vector<Complex, SIZE> x;
     Matrix<Complex, SIZE> A;
     cin>>A;
     cin>>b;
     A.transpose();
-    Complex dets[SIZE+1];
+    cout<<A.determinant();
+    /*Complex dets[SIZE+1];
     dets[0]=A.determinant();
     for(int i=1; i<SIZE+1; i++)
     {
         dets[i] = A.other_dets(b, i);
     }
-    if(abs(dets[0]))
+    if(sqrt(dets[0]))
     {
         for(int i=1; i<SIZE+1; i++)
         {
@@ -41,7 +44,7 @@ int main()
     {
         while(counter<SIZE+1 && zero!=true)
         {
-            if(abs(dets[counter]))
+            if(sqrt(dets[counter]))
             {
                 zero=true;
             }
@@ -57,7 +60,7 @@ int main()
         }
     }
     epsilon=A*x-b;
-    cout<<epsilon.length();
+    cout<<epsilon.length(); */
     return 0;
     }
 

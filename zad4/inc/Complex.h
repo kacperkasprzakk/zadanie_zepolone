@@ -31,7 +31,7 @@ std::istream & operator>> (std::istream & streamIn, Complex &arg1);
 std::ostream & operator<< (std::ostream & streamOut, Complex &arg1);
 Complex operator+=(Complex &arg1, Complex arg2);
 Complex operator-=(Complex &arg1, Complex arg2);
-double abs(Complex arg1);
+double sqrt(Complex arg1);
 bool operator==(Complex arg1, Complex arg2);
 int compare(Complex arg1, Complex arg2);
 Complex operator *(Complex arg1, double factor);

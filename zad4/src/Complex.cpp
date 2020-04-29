@@ -177,12 +177,13 @@ Complex operator-=(Complex &arg1, Complex arg2)
     arg1.im=arg1.im-arg2.im;
     return arg1;
 }
-double abs(Complex arg1)
+double sqrt(Complex arg1)
 {
     if(sqrt(arg1.re*arg1.re+arg1.im*arg1.im)<0.0000001)
     {
         return 0.0;
-    } else
+    }
+    else
     {
         return sqrt(arg1.re*arg1.re+arg1.im*arg1.im);
     }

@@ -34,7 +34,6 @@ class Vector
 {
     T data[SIZE];
 public:
-    Vector();
     Vector<T, SIZE> operator +(const Vector<T, SIZE> &arg);
     T operator[](int i) const;
     T &operator[](int i);
@@ -76,8 +75,8 @@ double Vector<T, SIZE>::operator*(Vector<T, SIZE> &v)
 template <typename T, int SIZE>
 double Vector<T, SIZE>::length()
 {
-    T result=0;
-    for(int i=0; i<SIZE; i++)
+    T result=data[0]*data[0];
+    for(int i=1; i<SIZE; i++)
     {
         result=result+data[i]*data[i];
     }
@@ -86,7 +85,7 @@ double Vector<T, SIZE>::length()
 template <typename T, int SIZE>
 Vector<T, SIZE> Vector<T,SIZE>::operator*(T factor)
 {
-    Vector<double, SIZE> result;
+    Vector<T, SIZE> result;
     for(int i=0; i<SIZE; i++)
     {
         result[i]=data[i]*factor;
@@ -155,7 +154,7 @@ T  &Vector<T, SIZE>::operator[](int i)
     }
     else
     {
-        return &data[i];
+        return data[i];
     }
 }
 

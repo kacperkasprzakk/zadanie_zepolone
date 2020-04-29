@@ -84,7 +84,8 @@ T Matrix<T, SIZE>::determinant()
 {
     bool changed= false;
     Matrix<T, SIZE> copy=*this;
-    T result=1;
+    double starting=1;
+    T result;
     T ratio;
     int column=0;
     for(int i=0; i<SIZE; i++)
@@ -93,7 +94,7 @@ T Matrix<T, SIZE>::determinant()
         {
             for(int j=column; j<SIZE-1; j++)
             {
-                if(abs(copy.vec[column][column])==0 && column+1<SIZE)
+                if(sqrt(copy.vec[column][column])==0 && column+1<SIZE)
                 {
                     Vector<T, SIZE> temporary=copy.vec[column];
                     copy.vec[column]=copy.vec[column+1];
@@ -107,7 +108,8 @@ T Matrix<T, SIZE>::determinant()
             column++;
         }
     }
-    for(int i=0; i<SIZE; i++)
+    result=copy.vec[0][0]*starting;
+    for(int i=1; i<SIZE; i++)
     {
         result=result*copy.vec[i][i];
     }
@@ -123,7 +125,7 @@ Matrix<T, SIZE> Matrix<T, SIZE>::operator=(Matrix<T, SIZE> &mat)
 {
     for(int i=0; i<SIZE; i++)
     {
-        vec(i)=mat(i);
+        vec[i]=mat.vec[i];
     }
 }
 template <typename T, int SIZE>
@@ -142,12 +144,12 @@ Matrix<T, SIZE> Matrix<T, SIZE>::transpose()
 template <typename T, int SIZE>
 Vector<T, SIZE> Matrix<T, SIZE>::operator*(Vector<T, SIZE> &arg)
 {
-    Vector<double, SIZE> result;
+    Vector<T, SIZE> result;
     for(int i=0; i<SIZE; i++)
     {
         for (int j = 0; j < SIZE; j++)
         {
-            result[i] =result[i]+vec(i,j)*arg[j];
+            result[i] =result[i]+vec[i][j]*arg[j];
         }
     }
 }/*
