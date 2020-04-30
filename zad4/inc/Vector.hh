@@ -62,7 +62,6 @@ public:
     Vector<T, SIZE> operator *(T factor);
     double operator *(Vector<T,SIZE>& v);
     Vector<T, SIZE> operator /(T divider);
-    T length();
 };
 template <typename T, int SIZE>
 double Vector<T, SIZE>::operator*(Vector<T, SIZE> &v)
@@ -74,17 +73,9 @@ double Vector<T, SIZE>::operator*(Vector<T, SIZE> &v)
     }
     return result;
 }
-template <typename T, int SIZE>
+
 /** Liczenie długości wektora **/
-T Vector<T, SIZE>::length()
-{
-    T result=data[0]*data[0];
-    for(int i=1; i<SIZE; i++)
-    {
-        result=result+data[i]*data[i];
-    }
-    return   sqrt(result);
-}
+
 template <typename T, int SIZE>
 /** Przeciążenie operatora / wektora i liczby, zwracający wektor **/
 Vector<T, SIZE> Vector<T,SIZE>::operator*(T factor)

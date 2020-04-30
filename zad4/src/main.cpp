@@ -75,7 +75,6 @@ int main()
         }
     }
     epsilon=A*x-b;
-    cout<<epsilon.length();
     return 0;
     }
 

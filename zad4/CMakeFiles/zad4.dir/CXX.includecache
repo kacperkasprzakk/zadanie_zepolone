@@ -55,6 +55,8 @@ Matrix.hh
 /home/kacper/zad4/src/Matrix.hh
 Complex.h
 /home/kacper/zad4/src/Complex.h
+cmath
+-
 SystemOfLinearEquations.hh
 /home/kacper/zad4/src/SystemOfLinearEquations.hh
 Size.hh
