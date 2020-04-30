@@ -108,7 +108,28 @@ bool operator==(Complex arg1, Complex arg2)
 }
 std::istream & operator >>(std::istream & streamIn,Complex &arg1)
 {
-
+    /*char bracket1, bracket2, i;
+    double re, im;
+    streamIn >> bracket1; // >> re >> im >> i >> bracket2;
+    if(bracket1!='(')
+    {
+        streamIn.setstate(ios::failbit);
+        return streamIn;
+    }
+    streamIn>>arg1.re;
+    streamIn>>arg1.im;
+    streamIn>>bracket2;
+    if(bracket2!=')')
+    {
+        streamIn.setstate(ios::failbit);
+        return streamIn;
+    }
+    streamIn>>i;
+    if(i!='i')
+    {
+        streamIn.setstate(ios::failbit);
+        return streamIn;
+    } */
         if (streamIn.peek() != '(')
         {
             streamIn.setstate(ios::failbit);
@@ -145,7 +166,7 @@ std::ostream & operator <<(std::ostream & streamOut,Complex arg1)
             streamOut<<"+";
         } else
         {
-            streamOut<<"-";
+            //streamOut<<"-";
         }
         streamOut<<arg1.im;
         streamOut<<"i)";

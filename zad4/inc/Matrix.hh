@@ -126,14 +126,15 @@ template <typename T, int SIZE>
 Matrix<T, SIZE> Matrix<T, SIZE>::transpose()
 {
     Matrix<T, SIZE> copy;
+    copy=*this;
     for(int i=0; i<SIZE; i++)
     {
         for(int j=0; j<SIZE; j++)
         {
-            copy.vec[i][j]=vec[j][i];
+            vec[j][i]=copy.vec[i][j];
         }
     }
-    return copy;
+    return *this;
 }
 template <typename T, int SIZE>
 Vector<T, SIZE> Matrix<T, SIZE>::operator*(Vector<T, SIZE> &arg)

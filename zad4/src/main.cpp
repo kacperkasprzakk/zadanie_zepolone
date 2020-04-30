@@ -2,6 +2,7 @@
 #include "Vector.hh"
 #include "Matrix.hh"
 #include "Complex.h"
+#include  <cmath>
 #include "SystemOfLinearEquations.hh"
 #include "Size.hh"
 
@@ -16,6 +17,19 @@ using namespace std;
 
 int main()
 {
+    /***** MODYFIKACJA *****/
+    /** Complex number;
+    cin>>number;
+    Matrix<double, 2> wlasnosc4;
+    cin>>wlasnosc4;
+    if(abs(wlasnosc4.determinant()-sqrt(number)*sqrt(number))<0.0001)
+        cout<<"OK!";
+    else
+    {
+        cout<<"NIE!";
+    } **/ //sprawdzona dla (3+4i) i działa :)
+
+
     bool zero;
     int counter=1;
     Vector<Complex, SIZE> b;
@@ -29,7 +43,6 @@ int main()
     cout<<A<<endl;
     dets[0]=A.determinant();
     cout<<dets[0];
-    /*Complex dets[SIZE+1];
     dets[0]=A.determinant();
     for(int i=1; i<SIZE+1; i++)
     {
@@ -63,7 +76,7 @@ int main()
         }
     }
     epsilon=A*x-b;
-    cout<<epsilon.length(); */
+    cout<<epsilon.length();
     return 0;
     }
 

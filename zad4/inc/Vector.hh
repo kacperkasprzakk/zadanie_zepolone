@@ -35,6 +35,7 @@ class Vector
     T data[SIZE];
 public:
     Vector<T, SIZE> operator +(const Vector<T, SIZE> &arg);
+    Vector<T, SIZE> operator =(Vector<T, SIZE> arg);
     T operator[](int i) const;
     T &operator[](int i);
     friend std::istream &operator>>(std::istream &stream, Vector<T,SIZE>& vec)
@@ -92,6 +93,15 @@ Vector<T, SIZE> Vector<T,SIZE>::operator*(T factor)
     }
     return  result;
 }
+template <typename T, int SIZE>
+Vector<T, SIZE> Vector<T,SIZE>::operator=(Vector<T, SIZE> arg)
+{
+    for(int i=0; i<SIZE; i++)
+    {
+        data[i]=arg.data[i];
+    }
+}
+
 template <typename T, int SIZE>
 Vector<T, SIZE> Vector<T,SIZE>::operator/(T divider)
 {
