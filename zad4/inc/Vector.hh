@@ -29,10 +29,11 @@ public:
  *  Tutaj trzeba opisac klase. Jakie pojecie modeluje ta klasa
  *  i jakie ma glowne cechy.
  */
+/** szablon klasy wraz z metodami (szablonami) przyjmujący typ zmiennych i rozmiar SIZE **/
 template <typename T, int SIZE>
 class Vector
 {
-    T data[SIZE];
+    T data[SIZE]; /** Vector jako SIZE zmiennych typu T **/
 public:
     Vector<T, SIZE> operator +(const Vector<T, SIZE> &arg);
     Vector<T, SIZE> operator =(Vector<T, SIZE> arg);
@@ -61,7 +62,7 @@ public:
     Vector<T, SIZE> operator *(T factor);
     double operator *(Vector<T,SIZE>& v);
     Vector<T, SIZE> operator /(T divider);
-    double length();
+    T length();
 };
 template <typename T, int SIZE>
 double Vector<T, SIZE>::operator*(Vector<T, SIZE> &v)
@@ -74,7 +75,8 @@ double Vector<T, SIZE>::operator*(Vector<T, SIZE> &v)
     return result;
 }
 template <typename T, int SIZE>
-double Vector<T, SIZE>::length()
+/** Liczenie długości wektora **/
+T Vector<T, SIZE>::length()
 {
     T result=data[0]*data[0];
     for(int i=1; i<SIZE; i++)
@@ -84,6 +86,7 @@ double Vector<T, SIZE>::length()
     return   sqrt(result);
 }
 template <typename T, int SIZE>
+/** Przeciążenie operatora / wektora i liczby, zwracający wektor **/
 Vector<T, SIZE> Vector<T,SIZE>::operator*(T factor)
 {
     Vector<T, SIZE> result;
@@ -94,6 +97,7 @@ Vector<T, SIZE> Vector<T,SIZE>::operator*(T factor)
     return  result;
 }
 template <typename T, int SIZE>
+/** Przeciążenie operatora = wektora i wektora, zwracający wektor **/
 Vector<T, SIZE> Vector<T,SIZE>::operator=(Vector<T, SIZE> arg)
 {
     for(int i=0; i<SIZE; i++)
@@ -103,6 +107,7 @@ Vector<T, SIZE> Vector<T,SIZE>::operator=(Vector<T, SIZE> arg)
 }
 
 template <typename T, int SIZE>
+/** Przeciążenie operatora / wektora i liczby, zwracający wektor **/
 Vector<T, SIZE> Vector<T,SIZE>::operator/(T divider)
 {
     Vector<T, SIZE> result;
@@ -114,6 +119,7 @@ Vector<T, SIZE> Vector<T,SIZE>::operator/(T divider)
 }
 
 template <typename T, int SIZE>
+/** Przeciążenie operatora / wektora i wektora, zwracający wektor **/
 Vector<T,SIZE> Vector<T, SIZE>::operator-(Vector<T, SIZE> &arg)
 {
     Vector<T, SIZE> result;
@@ -124,6 +130,7 @@ Vector<T,SIZE> Vector<T, SIZE>::operator-(Vector<T, SIZE> &arg)
     return  result;
 }
 template <typename T, int SIZE>
+/** Przeciążenie operatora / wektora i wektora, zwracający wektor **/
 Vector<T,SIZE> Vector<T, SIZE>::operator+(Vector<T, SIZE> &arg)
 {
     Vector<double, SIZE> result;
@@ -143,6 +150,7 @@ Vector<T, SIZE>::Vector()
     }
 } */
 template <typename T, int SIZE>
+/** Przeciążenie operatora [] wektora stałego  zwracający wektor **/
 T  Vector<T, SIZE>::operator[](int i) const
 {
     if(i<0 || i>SIZE)
@@ -155,6 +163,7 @@ T  Vector<T, SIZE>::operator[](int i) const
     }
 }
 template <typename T, int SIZE>
+/** Przeciążenie operatora [] wektora   zwracający wektor **/
 T  &Vector<T, SIZE>::operator[](int i)
 {
     if(i<0 || i>SIZE)

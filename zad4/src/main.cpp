@@ -29,7 +29,7 @@ int main()
         cout<<"NIE!";
     } **/ //sprawdzona dla (3+4i) i działa :)
 
-
+    /** Tworzenie zmiennych **/
     bool zero;
     int counter=1;
     Vector<Complex, SIZE> b;
@@ -43,7 +43,6 @@ int main()
     cout<<A<<endl;
     dets[0]=A.determinant();
     cout<<dets[0];
-    dets[0]=A.determinant();
     for(int i=1; i<SIZE+1; i++)
     {
         dets[i] = A.other_dets(b, i);

@@ -29,10 +29,10 @@ public:
     // *  Tutaj trzeba wstawic definicje odpowiednich metod publicznych
 
 };*/
-template <typename T, int SIZE>
+template <typename T, int SIZE> /** szablon klasy wraz z metodami (szablonami) przyjmujący typ zmiennych i rozmiar SIZE **/
 class Matrix
 {
-    Vector<T, SIZE> vec[SIZE];
+    Vector<T, SIZE> vec[SIZE]; /** Macierz jako SIZE wektorów **/
 public:
     //Matrix();
     T other_dets(Vector<T,SIZE> vector, int n);
@@ -60,6 +60,7 @@ public:
     Matrix<T, SIZE> operator =(Matrix<T, SIZE>& mat);
 };
 template <typename T, int SIZE>
+/** Do policzenia pozostałych wyznaczników w metodzie Cramera **/
 T Matrix<T,SIZE>::other_dets(Vector<T, SIZE> vector, int n)
 {
     T  result;
@@ -74,6 +75,7 @@ T Matrix<T,SIZE>::other_dets(Vector<T, SIZE> vector, int n)
     return result;
 }
 template <typename T, int SIZE>
+/** Funkcja licząca wyznacznik zwracająca typ T, jest z nią jakiś problem, którego nie umiem określić, za argument macierz **/
 T Matrix<T, SIZE>::determinant()
 {
     bool changed= false;
@@ -115,6 +117,7 @@ T Matrix<T, SIZE>::determinant()
 
 }
 template <typename T, int SIZE>
+/** Przeciążenie = dla dwóch macierzy **/
 Matrix<T, SIZE> Matrix<T, SIZE>::operator=(Matrix<T, SIZE> &mat)
 {
     for(int i=0; i<SIZE; i++)
@@ -123,6 +126,7 @@ Matrix<T, SIZE> Matrix<T, SIZE>::operator=(Matrix<T, SIZE> &mat)
     }
 }
 template <typename T, int SIZE>
+/**  Metoda transponująca macierz, przyjmująca za argument macierz i zwracająca macierz **/
 Matrix<T, SIZE> Matrix<T, SIZE>::transpose()
 {
     Matrix<T, SIZE> copy;
@@ -136,6 +140,7 @@ Matrix<T, SIZE> Matrix<T, SIZE>::transpose()
     }
     return *this;
 }
+/** Przeciążenie operatoru mnożenia macierzy i wektora, zwracający wektor **/
 template <typename T, int SIZE>
 Vector<T, SIZE> Matrix<T, SIZE>::operator*(Vector<T, SIZE> &arg)
 {
@@ -147,7 +152,7 @@ Vector<T, SIZE> Matrix<T, SIZE>::operator*(Vector<T, SIZE> &arg)
             result[i] =result[i]+vec[i][j]*arg[j];
         }
     }
-}/*
+} /** Konstruktor usunąłem bo był problem w przypadku zmiennych Complex
 template <typename T, int SIZE>
 Matrix<T, SIZE>::Matrix()
 {
@@ -158,8 +163,9 @@ Matrix<T, SIZE>::Matrix()
             vec[i][j]=0;
         }
     }
-}*/
+}**/
 template <typename T, int SIZE>
+/** Przeciążenie operatora () dla typu  Matrix, zwracająca typ T **/
 T  &Matrix<T, SIZE>::operator()(int i, int j)
 {
     if(i<0 || i>SIZE || j<0 || j>SIZE)
@@ -173,6 +179,7 @@ T  &Matrix<T, SIZE>::operator()(int i, int j)
     }
 }
 template <typename T, int SIZE>
+/** Przeciążenie operatora () dla typu const Matrix, zwracająca typ T **/
 T  Matrix<T, SIZE>::operator()(int i, int j) const
 {
     if(i<0 || i>SIZE || j<0 || j>SIZE)
