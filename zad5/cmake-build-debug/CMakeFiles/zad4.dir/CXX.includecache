@@ -1,0 +1,44 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/kacper/CLionProjects/zad4/Complex.h
+iostream
+-
+cstdlib
+-
+
+/home/kacper/CLionProjects/zad4/Size.hh
+
+/home/kacper/CLionProjects/zad4/Vector.hh
+Size.hh
+/home/kacper/CLionProjects/zad4/Size.hh
+Complex.h
+/home/kacper/CLionProjects/zad4/Complex.h
+iostream
+-
+iomanip
+-
+cmath
+-
+
+/home/kacper/CLionProjects/zad4/cuboid.cpp
+cuboid.hh
+/home/kacper/CLionProjects/zad4/cuboid.hh
+fstream
+-
+iostream
+-
+
+/home/kacper/CLionProjects/zad4/cuboid.hh
+vector
+-
+string
+-
+Vector.hh
+/home/kacper/CLionProjects/zad4/Vector.hh
+

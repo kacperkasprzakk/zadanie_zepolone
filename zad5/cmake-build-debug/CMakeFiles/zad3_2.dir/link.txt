@@ -1,0 +1,1 @@
+/usr/bin/c++  -g   CMakeFiles/zad3_2.dir/main.cpp.o CMakeFiles/zad3_2.dir/Matrix.cpp.o CMakeFiles/zad3_2.dir/Vector.cpp.o CMakeFiles/zad3_2.dir/SystemOfLinearEquations.cpp.o  -o zad3_2 

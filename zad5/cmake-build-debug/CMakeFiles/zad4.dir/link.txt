@@ -1,0 +1,1 @@
+/usr/bin/c++  -g   CMakeFiles/zad4.dir/main.cpp.o CMakeFiles/zad4.dir/Complex.cpp.o CMakeFiles/zad4.dir/cuboid.cpp.o CMakeFiles/zad4.dir/gnuplot_link.cpp.o  -o zad4 

@@ -1,0 +1,3 @@
+/home/kacper/CLionProjects/zad4/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/home/kacper/CLionProjects/zad4/cmake-build-debug/CMakeFiles/edit_cache.dir
+/home/kacper/CLionProjects/zad4/cmake-build-debug/CMakeFiles/zad4.dir

@@ -1,0 +1,13 @@
+file(REMOVE_RECURSE
+  "CMakeFiles/zad4.dir/Complex.cpp.o"
+  "CMakeFiles/zad4.dir/cuboid.cpp.o"
+  "CMakeFiles/zad4.dir/gnuplot_link.cpp.o"
+  "CMakeFiles/zad4.dir/main.cpp.o"
+  "zad4"
+  "zad4.pdb"
+)
+
+# Per-language clean rules from dependency scanning.
+foreach(lang CXX)
+  include(CMakeFiles/zad4.dir/cmake_clean_${lang}.cmake OPTIONAL)
+endforeach()
