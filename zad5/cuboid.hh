@@ -3,6 +3,7 @@
 #include <vector>
 #include <string>
 #include "Vector.hh"
+constexpr double PI=3.14159265;
 
 const std::string kModelCuboid("model.dat");
 
@@ -18,4 +19,5 @@ public:
     {
         translation = translation + change;
     }
+    void rotate(double angle);
 };
