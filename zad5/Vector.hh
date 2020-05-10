@@ -57,6 +57,7 @@ public:
         return stream;
     }
     Vector<T, SIZE> operator +(Vector<T, SIZE> arg);
+    Vector<T, SIZE> operator +(Vector<T, SIZE> arg) const;
     Vector<T, SIZE> operator -(Vector<T, SIZE> arg);
     Vector<T, SIZE> operator *(T factor);
     double operator *(Vector<T,SIZE>& v);
@@ -122,8 +123,17 @@ Vector<T,SIZE> Vector<T, SIZE>::operator-(Vector<T, SIZE> arg)
     return  result;
 }
 template <typename T, int SIZE>
-/** Przeciążenie operatora + wektora i wektora, zwracający wektor **/
-Vector<T,SIZE> Vector<T, SIZE>::operator+(Vector<T, SIZE> arg)
+Vector<T,SIZE> Vector<T, SIZE>::operator+( Vector<T, SIZE> arg)
+{
+    Vector<double, SIZE> result;
+    for(int i=0; i<SIZE; i++)
+    {
+        result[i]=data[i]+arg[i];
+    }
+    return  result;
+}
+template <typename T, int SIZE>
+Vector<T,SIZE> Vector<T, SIZE>::operator+( Vector<T, SIZE> arg) const
 {
     Vector<double, SIZE> result;
     for(int i=0; i<SIZE; i++)
