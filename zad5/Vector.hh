@@ -1,7 +1,6 @@
 #pragma once
 
 #include "Size.hh"
-#include "Complex.h"
 #include <iostream>
 #include <iomanip>
 #include <cmath>
@@ -23,7 +22,7 @@ public:
     friend std::istream &operator>>(std::istream &stream, Vector &vec);
     friend std::ostream &operator<<(std::ostream &stream, const Vector &vec);
     double length();
-    /*
+    
      *  Tutaj trzeba wstawic definicje odpowiednich metod publicznych
  *
  *  Tutaj trzeba opisac klase. Jakie pojecie modeluje ta klasa
@@ -33,8 +32,9 @@ public:
 template <typename T, int SIZE>
 class Vector
 {
-    T data[SIZE]; /** Vector jako SIZE zmiennych typu T **/
+    T data[SIZE]={0}; /** Vector jako SIZE zmiennych typu T **/
 public:
+    Vector() {for(T &type: data) type = 0;}
     Vector<T, SIZE> operator =(Vector<T, SIZE> arg);
     T operator[](int i) const;
     T &operator[](int i);
@@ -62,8 +62,12 @@ public:
     Vector<T, SIZE> operator *(T factor);
     double operator *(Vector<T,SIZE>& v);
     Vector<T, SIZE> operator /(T divider);
+    std::istream operator>>(std::istream &stream);
+    std::ostream operator<<(std::ostream &stream);
 
 };
+
+
 using Vector3D = Vector<double,3>;
 template <typename T, int SIZE>
 double Vector<T, SIZE>::operator*(Vector<T, SIZE> &v)
@@ -177,10 +181,16 @@ T  &Vector<T, SIZE>::operator[](int i)
         return data[i];
     }
 }
-
-/*template <typename T, int SIZE>
+/*
+template <typename T, int SIZE>
 std::istream Vector<T,SIZE>::operator>>(std::istream &stream)
 {
+      for (int i = 0; i < SIZE; i++)
+  {
+    stream >> data[i];
+  }
+
+  return stream;
 
 }
 template <typename T, int SIZE>
@@ -192,6 +202,7 @@ std::ostream Vector<T, SIZE>::operator<<(std::ostream &stream)
         stream<<data[i];
     }
     std::cout<<std::endl;
+    return stream;
 } */
 /*
  * To przeciazenie trzeba opisac. Co ono robi. Jaki format

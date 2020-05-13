@@ -1,7 +1,6 @@
 #pragma once
 
 #include "Size.hh"
-#include "Complex.h"
 #include <iostream>
 #include "Vector.hh"
 
@@ -66,7 +65,7 @@ T Matrix<T,SIZE>::other_dets(Vector<T, SIZE> vector, int n)
     T  result;
     if(n>=SIZE)
     {
-        cerr<<"OUT OF RANGE IN OTHER_DETERMINANTS FUNCTION";
+        std::cerr<<"OUT OF RANGE IN OTHER_DETERMINANTS FUNCTION";
     }
     Matrix copy;
     copy=*this;
@@ -171,11 +170,11 @@ T  &Matrix<T, SIZE>::operator()(int i, int j)
     if(i<0 || i>SIZE || j<0 || j>SIZE)
     {
         std::cerr<<"POZA ZAKRESEM"<<std::endl;
-        return 0;
+        
     }
     else
     {
-        return &vec[i][j];
+        return vec[i][j];
     }
 }
 template <typename T, int SIZE>

@@ -39,4 +39,4 @@ int main()
     link.Draw(); // <- Tutaj gnuplot rysuje, to co zapisaliśmy do pliku
     cout << "Naciśnij ENTER, aby kontynuowac" << endl;
     cin.ignore(100000, '\n');
-}
+} 

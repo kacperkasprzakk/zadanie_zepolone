@@ -3,6 +3,7 @@
 #include <iostream>
 #include <cmath>
 #include <iostream>
+#include "Matrix.hh"
 
 using namespace std;
 
@@ -44,14 +45,14 @@ void Cuboid::draw(std::string filename) const
     }
 }
 
-void  Cuboid::rotate(double angle)
+/* void  Cuboid::rotate(double angle)
 {
-    for(int i=0; i< points.size(); i++)
-    {
-        double x,y,xb,yb;
-        x=points[i][0];
-        y=points[i][1];
-        xb=x*cos(angle*PI/180) - y*sin(angle*PI/180);
-        yb=x*sin(angle*PI/180) + y*cos(angle*PI/180);
-    }
+	
 }
+
+void Cuboid::move(double distance,  double angle)
+{
+
+} */
+
+
