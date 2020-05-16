@@ -3,12 +3,12 @@
 #include <vector>
 #include <string>
 #include "Vector.hh"
-
 constexpr double PI=3.14159265;
 
-const std::string kModelCuboid("model.dat");
+const std::string kModelCuboid("solid/model.dat");
 
-class Cuboid{
+class Cuboid
+{
     std::vector<Vector3D> points;
     Vector3D translation;
     double angle;

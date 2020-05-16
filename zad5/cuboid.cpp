@@ -1,9 +1,9 @@
 #include "cuboid.hh"
+#include "Matrix.hh"
+#include "Rotate_Matrix.hh"
 #include <fstream>
 #include <iostream>
 #include <cmath>
-#include <iostream>
-#include "Matrix.hh"
 
 using namespace std;
 
@@ -45,14 +45,24 @@ void Cuboid::draw(std::string filename) const
     }
 }
 
-/* void  Cuboid::rotate(double angle)
+void  Cuboid::rotate(double angle)
 {
-	
+    Vector3D final_point;
+    for (int i = 0; i < points.size(); i++)
+    {
+        final_point=Matrix3D(angle*PI/180)*final_point;
+    }
+    translate(final_point);
+
 }
-
-void Cuboid::move(double distance,  double angle)
+void Cuboid::move(double distance, double angle)
 {
-
-} */
-
-
+    Vector3D final_point;
+    for(int i=0; i<points.size(); i++)
+    {
+        final_point[0]=distance*cos(angle*PI/180)*cos(angle*PI/180);
+        final_point[1]=final_point[1];
+        final_point[2]=final_point[2]*sin(angle*PI/180)*sin(angle*PI/180);
+    }
+    translate(final_point);
+}

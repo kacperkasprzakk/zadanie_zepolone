@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Size.hh"
+#include "Complex.h"
 #include <iostream>
 #include "Vector.hh"
 
@@ -31,6 +32,7 @@ public:
 template <typename T, int SIZE> /** szablon klasy wraz z metodami (szablonami) przyjmujący typ zmiennych i rozmiar SIZE **/
 class Matrix
 {
+protected:
     Vector<T, SIZE> vec[SIZE]; /** Macierz jako SIZE wektorów **/
 public:
     //Matrix();
@@ -65,7 +67,7 @@ T Matrix<T,SIZE>::other_dets(Vector<T, SIZE> vector, int n)
     T  result;
     if(n>=SIZE)
     {
-        std::cerr<<"OUT OF RANGE IN OTHER_DETERMINANTS FUNCTION";
+        cerr<<"OUT OF RANGE IN OTHER_DETERMINANTS FUNCTION";
     }
     Matrix copy;
     copy=*this;
@@ -170,7 +172,6 @@ T  &Matrix<T, SIZE>::operator()(int i, int j)
     if(i<0 || i>SIZE || j<0 || j>SIZE)
     {
         std::cerr<<"POZA ZAKRESEM"<<std::endl;
-        
     }
     else
     {
