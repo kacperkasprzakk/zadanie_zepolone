@@ -1,211 +1,139 @@
 #pragma once
 
-#include "Size.hh"
-#include "Complex.h"
 #include <iostream>
 #include "Vector.hh"
+#include <cmath>
 
-/*
- *  Tutaj trzeba opisac klase. Jakie pojecie modeluje ta klasa
- *  i jakie ma glowne cechy.
- */
-/*class Matrix
-{
-    Vector vec[SIZE];
 
-     //  Tutaj trzeba wstawic definicje odpowiednich pol i metod prywatnych
-
-public:
-    friend std::istream &operator>>(std::istream &stream, Matrix &matrix);
-    friend std::ostream &operator<<(std::ostream &stream, const Matrix &matrix);
-    double determinant();
-    double laplace();
-    double other_dets(Vector vector, int n);
-    Matrix operator =(Matrix& m);
-    Vector operator *(Vector v);
-    Matrix transpose();
-    Matrix hadamard(Matrix m2);
-
-    // *  Tutaj trzeba wstawic definicje odpowiednich metod publicznych
-
-};*/
-template <typename T, int SIZE> /** szablon klasy wraz z metodami (szablonami) przyjmujący typ zmiennych i rozmiar SIZE **/
-class Matrix
-{
+template <typename T, int SIZE>
+class Matrix{
 protected:
-    Vector<T, SIZE> vec[SIZE]; /** Macierz jako SIZE wektorów **/
+  Vector<T, SIZE> vec[SIZE];
+
 public:
-    //Matrix();
-    T other_dets(Vector<T,SIZE> vector, int n);
-    T operator()(int i, int j) const;
-    T &operator()(int i, int j);
-    friend std::istream &operator>>(std::istream &stream, Matrix<T,SIZE>& mat)
-    {
-        for(int i=0; i<SIZE; i++)
-        {
-            stream>>mat.vec[i];
-        }
-        return stream;
-    }
-    friend std::ostream &operator<<(std::ostream &stream, const Matrix<T,SIZE>& mat)
-    {
-        for(int i=0; i<SIZE; i++)
-        {
-                stream<<mat.vec[i];
-        }
-        return  stream;
-    }
-    Vector<T, SIZE> operator *(Vector<T, SIZE> &arg);
-    Matrix<T, SIZE> transpose();
-    T determinant();
-    Matrix<T, SIZE> operator =(Matrix<T, SIZE>& mat);
+  const T &operator()(int i, int j) const;
+  T &operator()(int i, int j);
+  Vector<T, SIZE> &operator[](int i);
+  
+  T determinant() const;
+  Vector<T, SIZE> operator*(Vector<T, SIZE> arg) const;
 };
-template <typename T, int SIZE>
-/** Do policzenia pozostałych wyznaczników w metodzie Cramera **/
-T Matrix<T,SIZE>::other_dets(Vector<T, SIZE> vector, int n)
-{
-    T  result;
-    if(n>=SIZE)
-    {
-        cerr<<"OUT OF RANGE IN OTHER_DETERMINANTS FUNCTION";
-    }
-    Matrix copy;
-    copy=*this;
-    copy.vec[n]=vector;
-    result=copy.determinant();
-    return result;
-}
-template <typename T, int SIZE>
-/** Funkcja licząca wyznacznik zwracająca typ T, jest z nią jakiś problem, którego nie umiem określić, za argument macierz **/
-T Matrix<T, SIZE>::determinant()
-{
-    bool changed= false;
-    Matrix<T, SIZE> copy=*this;
-    double starting=1;
-    T result;
-    T ratio;
-    int column=0;
-    for(int i=0; i<SIZE; i++)
-    {
-        if(column==i)
-        {
-            for(int j=column; j<SIZE-1; j++)
-            {
-                if(sqrt(copy.vec[column][column])==0 && column+1<SIZE)
-                {
-                    Vector<T, SIZE> temporary=copy.vec[column];
-                    copy.vec[column]=copy.vec[column+1];
-                    copy.vec[column+1]=temporary;
-                    changed=!changed;
-                }
-                ratio = copy.vec[j + 1][column] / copy.vec[column][column];
-                auto tmp = copy.vec[column] * ratio;
-                copy.vec[j + 1] = (copy.vec[j + 1]) - tmp;
-            }
-            column++;
-        }
-    }
-    result=copy.vec[0][0]*starting;
-    for(int i=1; i<SIZE; i++)
-    {
-        result=result*copy.vec[i][i];
-    }
-    if(changed==true)
-    {
-        result=result*(-1);
-    }
-    return  result;
 
+template <typename T, int SIZE>
+const T &Matrix<T, SIZE>::operator()(int i, int j) const
+{
+  if (i < 0 || i >= SIZE || j < 0 || j >= SIZE)
+  {
+    std::cerr << "POZA ZAKRESEM" << std::endl;
+  }
+  return vec[j][i];
 }
 template <typename T, int SIZE>
-/** Przeciążenie = dla dwóch macierzy **/
-Matrix<T, SIZE> Matrix<T, SIZE>::operator=(Matrix<T, SIZE> &mat)
+T &Matrix<T, SIZE>::operator()(int i, int j)
 {
-    for(int i=0; i<SIZE; i++)
-    {
-        vec[i]=mat.vec[i];
-    }
-}
-template <typename T, int SIZE>
-/**  Metoda transponująca macierz, przyjmująca za argument macierz i zwracająca macierz **/
-Matrix<T, SIZE> Matrix<T, SIZE>::transpose()
-{
-    Matrix<T, SIZE> copy;
-    copy=*this;
-    for(int i=0; i<SIZE; i++)
-    {
-        for(int j=0; j<SIZE; j++)
-        {
-            vec[j][i]=copy.vec[i][j];
-        }
-    }
-    return *this;
-}
-/** Przeciążenie operatoru mnożenia macierzy i wektora, zwracający wektor **/
-template <typename T, int SIZE>
-Vector<T, SIZE> Matrix<T, SIZE>::operator*(Vector<T, SIZE> &arg)
-{
-    Vector<T, SIZE> result;
-    for(int i=0; i<SIZE; i++)
-    {
-        for (int j = 0; j < SIZE; j++)
-        {
-            result[i] =result[i]+vec[i][j]*arg[j];
-        }
-    }
-} /** Konstruktor usunąłem bo był problem w przypadku zmiennych Complex
-template <typename T, int SIZE>
-Matrix<T, SIZE>::Matrix()
-{
-    for(int i=0; i<SIZE; i++)
-    {
-        for(int j=0; j<SIZE; j++)
-        {
-            vec[i][j]=0;
-        }
-    }
-}**/
-template <typename T, int SIZE>
-/** Przeciążenie operatora () dla typu  Matrix, zwracająca typ T **/
-T  &Matrix<T, SIZE>::operator()(int i, int j)
-{
-    if(i<0 || i>SIZE || j<0 || j>SIZE)
-    {
-        std::cerr<<"POZA ZAKRESEM"<<std::endl;
-    }
-    else
-    {
-        return vec[i][j];
-    }
-}
-template <typename T, int SIZE>
-/** Przeciążenie operatora () dla typu const Matrix, zwracająca typ T **/
-T  Matrix<T, SIZE>::operator()(int i, int j) const
-{
-    if(i<0 || i>SIZE || j<0 || j>SIZE)
-    {
-        std::cerr<<"POZA ZAKRESEM"<<std::endl;
-        return 0;
-    }
-    else
-    {
-        return vec[i][j];
-    }
+  return const_cast<T &>(const_cast<const Matrix<T, SIZE> *>(this)->operator()(i, j));
 }
 
-/*
- * To przeciazenie trzeba opisac. Co ono robi. Jaki format
- * danych akceptuje. Jakie jest znaczenie parametrow itd.
- * Szczegoly dotyczace zalecen realizacji opisow mozna
- * znalezc w pliku:
- *    ~bk/edu/kpo/zalecenia.txt 
- */
+template <typename T, int SIZE>
+Vector<T, SIZE> &Matrix<T, SIZE>::operator[](int i)
+{
+  return vec[i];
+}
+
+using std::abs;
+template <typename T, int SIZE>
+T Matrix<T, SIZE>::determinant() const
+{
+  Matrix<T, SIZE> copy = *this;
+
+  T temp1, temp2;
+  int verseSwitch = 1;
+  T det;
+  int i, j;
+
+  if (abs(copy(0, 0)) < 0.0000001)
+  {
+    for (i = 0; i < SIZE; i++)
+    {
+      if (abs(copy(i, 0)) > 0.0000001)
+      {
+        verseSwitch *= -1;
+        for (j = 0; j < SIZE; j++)
+        {
+          temp1 = copy(i, j);
+          temp2 = copy(0, j);
+          copy(0, j) = temp1;
+          copy(i, j) = temp2;
+        }
+      }
+    }
+  }
+  for (i = j = 0; i < SIZE - 1 && j < SIZE - 1; i++, j++)
+  {
+    for (int m = i + 1; m < SIZE; m++)
+    {
+      for (int n = SIZE - 1; n >= j; n--)
+      {
+        copy(m, n) -= (copy(m, j) / copy(i, j) * copy(i, n));
+      }
+    }
+  }
+  det = copy(0,0);
+
+  for (i = j = 1; i < SIZE && j < SIZE; i++, j++)
+  {
+    det *= copy(i, j);
+  }
+
+  if(!verseSwitch)
+  {
+    det *= -1;
+  }
+
+  return det;
+}
 
 
-/*
- * To przeciazenie trzeba opisac. Co ono robi. Jaki format
- * danych akceptuje. Jakie jest znaczenie parametrow itd.
- * Szczegoly dotyczace zalecen realizacji opisow mozna
- * znalezc w pliku:
- *    ~bk/edu/kpo/zalecenia.txt 
- */
+template <typename T, int SIZE>
+Vector<T, SIZE> Matrix<T, SIZE>::operator*(Vector<T, SIZE> arg) const
+{
+  Vector<T, SIZE> result;
+
+  for (int i = 0; i < SIZE; i++)
+  {
+    result[i] = this->operator()(i, i) - this->operator()(i, i);
+    for (int j = 0; j < SIZE; j++)
+    {
+      result[i] += this->operator()(i, j) * arg[j];
+    }
+  }
+
+  return result;
+}
+
+template <typename T, int SIZE>
+std::istream &operator>>(std::istream &stream, Matrix<T, SIZE> &matrix)
+{
+  for (int i = 0; i < SIZE; i++)
+  {
+    stream >> matrix[i];
+  }
+  return stream;
+}
+
+
+template <typename T, int SIZE>
+std::ostream &operator<<(std::ostream &stream, const Matrix<T, SIZE> &matrix)
+{
+  for (int i = 0; i < SIZE; i++)
+  {
+    stream << "     ";
+    for (int j = 0; j < SIZE; j++)
+    {
+      stream << matrix(i, j) << " ";
+    }
+    stream << std::endl;
+  }
+
+  return stream;
+}
