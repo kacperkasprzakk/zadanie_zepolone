@@ -1,36 +1,43 @@
-//
-// Created by kacper on 16.05.2020.
-//
-
 #include "Scene.hh"
 
-Scene::Scene(Bottom b, Water w, Cuboid c)
+using namespace std;
+
+
+Scene::Scene()
 {
-    bot=b;
-    wat=w;
-    cub=c;
+    drone = new Complete_drone;
+    water = new Water;
+    bottom = new Bottom;
     makeObstacles();
 }
- void Scene::draw(string filename)
+void Scene::draw() const
 {
-    ofstream outputFile;
-    outputFile.open(filename);
-    if(!outputFile.is_open())
-    {
-        cerr << "Unable to open drone file!" << endl;
-        return;
-    }
-    bot.draw(kModelBottom);
-    wat.draw(kModelWater);
-    cub.draw(kModelCuboid);
-    obst[0]->draw(kRodFile);
-    obst[1]->draw(kModelRectangle);
-    obst[2]->draw(kModelCuboid);
+    drone->draw(kDroneFile);
+    water->draw(kWaterFile);
+    bottom->draw(kBottomFile);
+    objects[0]->draw(kModelRod);
+    objects[1]->draw(kCuboidFile);
+    objects[2]->draw(kRectangleFile);
 }
-
 void Scene::makeObstacles()
 {
-    shared_ptr<Rod> rod=make_shared<Rod>();
-    shared_ptr<Rectangle> rec=make_shared<Rectangle>();
-    shared_ptr<Cuboid> cubod=make_shared<Cuboid>();
+    shared_ptr<Rod> rod = make_shared<Rod>();
+    shared_ptr<Cuboid> cuboid = make_shared<Cuboid>();
+    shared_ptr<Rectangle> rec = make_shared<Rectangle>();
+
+    objects.push_back(rod);
+    objects.push_back(cuboid);
+    objects.push_back(rec);
+}
+bool Scene::detectCollision() const
+{
+    for(const auto& obstacle : objects){
+        if(obstacle->detectCollision(*drone))
+        {
+            cout << "UWAGA! Prawie uderzono w  "; obstacle->getName();
+            cout<<"" <<endl;
+            return 1;
+        }
+    }
+    return 0;
 }

@@ -1,27 +1,26 @@
-//
-// Created by kacper on 23.05.2020.
-//
-
 #pragma once
 
-#include "cuboid.hh"
 #include "Shape.hh"
-#include <fstream>
 #include "Turbine.hh"
+#include <cmath>
 
-class Complete_drone: public Shape
-{
-    std::vector<Vector3D> points;
-    Matrix3D current_angle;
-    Vector3D translation;
-    double angle;
-    Cuboid main_part;
-    Turbine *left,*right;
+const std::string kModelDrone("solid/model.dat");
+const std::string kDroneFile("solid/drone.dat");
+constexpr double PI=3.14159265;
+
+class Complete_drone: public Shape{
+    double current_angle;
+    Turbine* leftTurbine;
+    Turbine* rightTurbine;
 public:
+    std::vector<Vector3D> outside;
     Complete_drone();
-    void draw(string filename) const;
-    void rotate(double  angle);
-    void move(double distance, double angle);
-
+    void move(double angle, double distance);
+    bool position() const;
+    void draw(std::string filename) const;
+    void rotate(double angle)
+    {
+        current_angle += (angle*PI/180);
+    }
 
 };

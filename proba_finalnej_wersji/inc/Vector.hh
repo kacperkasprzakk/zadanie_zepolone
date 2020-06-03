@@ -3,10 +3,7 @@
 #include <iostream>
 #include <iomanip>
 #include <cmath>
-/*
- *  *  Tutaj trzeba opisac klase. Jakie pojecie modeluje ta klasa
- *  i jakie ma glowne cechy.
- */
+
 /** szablon klasy wraz z metodami (szablonami) przyjmujący typ zmiennych i rozmiar SIZE **/
 template <typename T, int SIZE>
 class Vector{

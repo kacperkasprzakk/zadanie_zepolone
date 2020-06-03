@@ -106,7 +106,7 @@ namespace PzG {
      * do rysowania obiektów graficznych.
      */
       int  width_;
-    /*!
+     /*!
      * \brief Sposób rysowania danej linii
      *
      * Przechowuje informacje o sposobie rysowania linii.

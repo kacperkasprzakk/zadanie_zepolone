@@ -1,29 +1,40 @@
-//
-// Created by kacper on 13.05.2020.
-//
-
 #pragma once
 
 #include "Water.hh"
-#include <iostream>
-#include <iomanip>
-#include <fstream>
-#include <string>
 #include "Bottom.hh"
-#include "cuboid.hh"
+#include "Complete_drone.hh"
+#include "Obstacle.hh"
 #include "Rod.hh"
 #include "Rectangle.hh"
+#include "cuboid.hh"
+#include <vector>
 #include <memory>
 
 
 class Scene{
-    Water wat;
-    Bottom bot;
-    Cuboid cub;
-    std::vector<std::shared_ptr<Obstacle>> obst;
-
-public:
-    Scene(Bottom b, Water w, Cuboid c);
-    void draw(string filename);
-    void makeObstacles();
+    Complete_drone* drone;
+    Water* water;
+    Bottom* bottom;
+    std::vector<std::shared_ptr<Obstacle>> objects;
+    public:
+        Scene();
+        void draw()const;
+        void drawDrone()
+        {
+            drone->draw(kDroneFile);
+        };
+        void rotateDrone(double angle)
+        {
+            drone->rotate(angle);
+        };
+        void moveDrone(double angle, double distance)
+        {
+            drone->move(angle,distance);
+        };
+        bool dronePosition() const
+        {
+            drone->position();
+        };
+        void makeObstacles();
+        bool detectCollision() const;
 };

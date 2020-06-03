@@ -9,7 +9,6 @@ template <typename T, int SIZE>
 class Matrix{
 protected:
   Vector<T, SIZE> vec[SIZE];
-
 public:
   const T &operator()(int i, int j) const;
   T &operator()(int i, int j);
@@ -33,13 +32,11 @@ T &Matrix<T, SIZE>::operator()(int i, int j)
 {
   return const_cast<T &>(const_cast<const Matrix<T, SIZE> *>(this)->operator()(i, j));
 }
-
 template <typename T, int SIZE>
 Vector<T, SIZE> &Matrix<T, SIZE>::operator[](int i)
 {
   return vec[i];
 }
-
 using std::abs;
 template <typename T, int SIZE>
 T Matrix<T, SIZE>::determinant() const
@@ -92,8 +89,6 @@ T Matrix<T, SIZE>::determinant() const
 
   return det;
 }
-
-
 template <typename T, int SIZE>
 Vector<T, SIZE> Matrix<T, SIZE>::operator*(Vector<T, SIZE> arg) const
 {
@@ -107,7 +102,6 @@ Vector<T, SIZE> Matrix<T, SIZE>::operator*(Vector<T, SIZE> arg) const
       result[i] += this->operator()(i, j) * arg[j];
     }
   }
-
   return result;
 }
 

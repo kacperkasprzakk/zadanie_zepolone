@@ -1,15 +1,16 @@
-//
-// Created by kacper on 23.05.2020.
-//
 #pragma once
 
 #include "Shape.hh"
-#include <fstream>
-const std::string kModelTurbine("solid/turbine.dat");
-class Turbine : public Shape{
-    public:
-        Turbine();
-        void draw(string filename);
+
+const std::string kModelTurbine("solid/modelTurbine.dat");
+const std::string kLTurbineFile("solid/leftTurbine.dat");
+const std::string kRTurbineFile("solid/rightTurbine.dat");
+
+class Turbine: public Shape{
+    double angleX;
+public:
+    Turbine();
+    void draw(std::string filename) const{};
+    Vector3D stickToComplete_drone(double dis) const;
+    void followTheComplete_drone(std::string filename,double angle,Vector3D translation);
 };
-
-

@@ -1,15 +1,12 @@
-//
-// Created by kacper on 23.05.2020.
-//
 #pragma once
-#include "cuboid.hh"
+
+#include "Shape.hh"
 #include "Complete_drone.hh"
 
 
-class Obstacle: public Shape
-{
-public:
-    virtual void draw(string filename) const=0;
-    virtual void detectCollision(const Complete_drone &drone) const =0;
-    virtual std::string getName() const =0;
+class Obstacle: public Shape{
+    public:
+        virtual void draw(std::string filename) const = 0;
+        virtual bool detectCollision(const Complete_drone &drone) const = 0;
+        virtual void getName() const = 0;
 };

@@ -1,22 +1,17 @@
-//
-// Created by kacper on 25.05.2020.
-//
-
 #pragma once
-#include <iostream>
-#include <fstream>
+
 #include "Obstacle.hh"
 
-const std::string kModelRectangle("solid/rectangle.dat");
+const std::string kModelRectangle("solid/rectangleRead.dat");
+const std::string kRectangleFile("solid/rectangle.dat");
 
-class Rectangle: public Obstacle
-{
-public:
+class Rectangle: public Obstacle{
+  public:
     Rectangle();
-    void draw(string filename) const ;
-    void detectCollision(const Complete_drone &drone) const;
-    std::string getName() const
+    void draw(std::string filename) const;
+    bool detectCollision(const Complete_drone& drone) const;
+    void getName() const
     {
-        return "rectangle";
-    }
+        std::cout << "rectangle";
+    };
 };

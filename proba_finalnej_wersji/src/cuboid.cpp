@@ -1,89 +1,140 @@
 #include "cuboid.hh"
-#include "Matrix.hh"
-#include "Rotate_Matrix.hh"
 #include <fstream>
-#include <iostream>
-#include <cmath>
 
 using namespace std;
-/**
- * Konstruktor Cuboida
- * otwiera plik do którego ścieżka i nazwa są podane w
- * kModelCuboid
- * konstruktory wszystkich innych klas (Bottom i Water) są odpowiednio przerobionym
- * kontruktorem cuboida
- *
- */
+
 Cuboid::Cuboid()
 {
     ifstream inputFile;
     inputFile.open(kModelCuboid);
-    if(!inputFile.is_open())
+    if (!inputFile.is_open())
     {
-        cerr << "Unable to load model Cuboid file!"
-             << endl;
+        cerr << "Unable to load model Cuboid file!"<< endl;
         return;
     }
-
     Vector3D point;
-    while(inputFile >> point)
+    while (inputFile >> point)
     {
         points.push_back(point);
     }
     inputFile.close();
 }
-/**
- * wypisywanie do pliku
- *
- * @param filename - nazwa pliku do którego zapisujemy dane z drona
- *
- */
- void Cuboid::draw(std::string filename) const
- {
-     ofstream outputFile;
-     outputFile.open(filename);
-     if(!outputFile.is_open())
-     {
-         cerr << "Unable to open drone file!" << endl;
-         return;
-     }
-     for(unsigned i = 0; i < points.size(); ++i)
-     {
-         outputFile << points[i]  << endl;
-     }
- }
- void Cuboid::detectCollision(const Complete_drone &drone) const
- {
-
- }
-/**
- * Funkcja ta miała obracać naszego drona,
- * niestety z nieznanych mi przyczyn
- * nie funkcjonuje ona jak należy
- * @param angle- kąt o jaki obracamy obiekt
- */
-
-/**
- * Funckja mająca za zadanie przesuwać
- * drona, samo przesuwanie jest oparte
- * o geometrię (niestety nie potrafiłem
- * skonstruować zależności geometrycznej
- * aby na podstawie zadanej długości (wektora)
- * w trójwymiarze i jednego kąta obliczyć
- * przesunięcie w kierunku wszystkich osi,
- * zatem uznałem za zerowe przesunięcie w osi y)
- * Funckja ta opiera się zatem o pewne
- * trygonmetryczne zależności
- *
- *
- * @param distance- długość przesunięcia
- * @param angle- kąt wznoszenia/opadania
- */
-/*void Cuboid::move(double distance, double angle)
+void Cuboid::draw(string filename) const
 {
-    Vector3D final_point;
-        final_point[0]=final_point[0]+distance*cos(angle*PI/180)*cos(angle*PI/180);
-        final_point[1]=final_point[1];
-        final_point[2]=final_point[2]+distance*sin(angle*PI/180)*sin(angle*PI/180);
-    translate(final_point);
-}*/
+    ofstream outputFile;
+    outputFile.open(filename);
+    if (!outputFile.is_open())
+    {
+        cerr << "Unable to open Cuboid file!" << endl;
+        return;
+    }
+
+    for (unsigned i = 0; i < points.size(); ++i)
+    {
+        outputFile << points[i] << endl;
+        if (i % 4 == 3)
+        {
+            outputFile << "#\n\n";
+        }
+    }
+}
+bool Cuboid::detectCollision(const Complete_drone &drone) const
+{
+    double maxX, maxY, maxZ;
+    double minX, minY, minZ;
+    maxX =-500;
+    maxY =-500;
+    maxZ = -500;
+    minX = 500;
+    minY =500;
+    minZ = 500;
+
+    for (int i = 0; i < points.size(); i++)
+    {
+        if(maxX< points[i][0]){
+            maxX= points[i][0];
+        }
+        if(maxY< points[i][1]){
+            maxY= points[i][1];
+        }
+        if(maxZ< points[i][2]){
+            maxZ= points[i][2];
+        }
+        if(minX> points[i][0]){
+            minX= points[i][0];
+        }
+        if(minY> points[i][1]){
+            minY= points[i][1];
+        }
+        if(minZ> points[i][2]){
+            minZ= points[i][2];
+        }
+    }
+
+    double maxXCdrone, maxYCdrone, maxZCdoner;
+    double minXCdrone, minYCdrone, minZCdrone;
+    maxXCdrone=-500;
+    maxYCdrone=-500;
+    maxZCdoner=-500;
+    minXCdrone=500;
+    minYCdrone=500;
+    minZCdrone=500;
+
+    for (int i = 0; i < drone.outside.size(); i++)
+    {
+        double X = drone.outside[i][0];
+        double Y = drone.outside[i][1];
+        double Z = drone.outside[i][2];
+        
+        if(maxXCdrone < X){
+            maxXCdrone = X;
+        }
+        if(maxYCdrone < Y){
+            maxYCdrone = Y;
+        }
+        if(maxZCdoner < Z){
+            maxZCdoner = Z;
+        }
+        if(minXCdrone > X){
+            minXCdrone = X;
+        }
+        if(minYCdrone > Y){
+            minYCdrone = Y;
+        }
+        if(minZCdrone > Z){
+            minZCdrone = Z;
+        }
+    }
+
+     int counter = 0;
+
+    for(int i = minX; i <= maxX; i++)
+    {
+        if(i <= maxXCdrone && i >= minXCdrone)
+        {
+            counter++;
+            break;
+        }
+    }
+
+    for(int i = minY; i <= maxY; i++)
+    {
+        if(i <= maxYCdrone && i >= minYCdrone)
+        {
+            counter++;
+            break;
+        }
+    }
+
+    for(int i = minZ; i <= maxZ; i++)
+    {
+        if(i <= maxZCdoner && i >= minZCdrone){
+            counter++;
+            break;
+        }
+    }
+
+    if(counter >= 3){
+        return 1;
+    }else return 0;
+}
