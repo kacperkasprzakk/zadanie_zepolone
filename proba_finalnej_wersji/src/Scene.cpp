@@ -2,7 +2,11 @@
 
 using namespace std;
 
-
+/**
+ * Konstruktor Sceny,
+ * Utworzone są obiekty (wskaźniki konkrtnego typu) oraz wywołana funkcja makeObstacles, dzięki której pojawia się przeszkody.
+ *
+ */
 Scene::Scene()
 {
     drone = new Complete_drone;
@@ -10,6 +14,9 @@ Scene::Scene()
     bottom = new Bottom;
     makeObstacles();
 }
+/**
+ * Wywołanie zapisu danych z wszystkich obiektów do właściwych plików za pomocom właściwych metod
+ */
 void Scene::draw() const
 {
     drone->draw(kDroneFile);
@@ -19,6 +26,9 @@ void Scene::draw() const
     objects[1]->draw(kCuboidFile);
     objects[2]->draw(kRectangleFile);
 }
+/**
+ * Funkcja tworząca przeszkody wraz z wektorem shared_pointerów
+ */
 void Scene::makeObstacles()
 {
     shared_ptr<Rod> rod = make_shared<Rod>();
@@ -29,6 +39,11 @@ void Scene::makeObstacles()
     objects.push_back(cuboid);
     objects.push_back(rec);
 }
+/**
+ * Sprawdzenie czy dron zderzył się z czymkolwiek. Wywołanie funkcji odbywa się w każdej klatce animacji.
+ * Funkcja podaje nazwę obiektu
+ * @return prawda lub fałsz czyli zderzenie lub nie
+ */
 bool Scene::detectCollision() const
 {
     for(const auto& obstacle : objects){

@@ -3,7 +3,9 @@
 #include <vector>
 #include "Vector.hh"
 
-
+/**
+ * Klasa bazwowa
+ */
 class Shape{
 protected:
     std::vector<Vector3D> points;

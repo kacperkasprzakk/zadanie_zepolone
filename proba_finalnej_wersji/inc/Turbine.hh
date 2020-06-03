@@ -5,7 +5,9 @@
 const std::string kModelTurbine("solid/modelTurbine.dat");
 const std::string kLTurbineFile("solid/leftTurbine.dat");
 const std::string kRTurbineFile("solid/rightTurbine.dat");
-
+/**
+ * Turbiny, dziedziczą z shape
+ */
 class Turbine: public Shape{
     double angleX;
 public:

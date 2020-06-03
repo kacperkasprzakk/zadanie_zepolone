@@ -2,7 +2,14 @@
 #include <fstream>
 
 using namespace std;
-
+/**
+ * Konstruktor Rod
+ * otwiera plik do którego ścieżka i nazwa są podane w
+ * kModelRod
+ * konstruktory wszystkich innych klas (Bottom i Water) są odpowiednio przerobionym
+ * kontruktorem cuboida
+ *
+ */
 
 Rod::Rod()
 {
@@ -20,7 +27,12 @@ Rod::Rod()
     }
     inputFile.close();
 }
-
+/**
+ * wypisywanie do pliku
+ *
+ * @param filename - nazwa pliku do którego zapisujemy dane z drona
+ *
+ */
 void Rod::draw(string filename) const
 {
     ofstream outputFile;
@@ -36,7 +48,11 @@ void Rod::draw(string filename) const
         outputFile << points[i] << endl;
     }
 }
-
+/**
+ * Funkcja sprawdzająca czy nastąpiło zderzenie z cuboidem (dla pozostałych analogiczne)
+ * @param drone
+ * @return prawda lub fałsz czyli zderzenie lub nie
+ */
 bool Rod::detectCollision(const Complete_drone &drone) const
 {
     double maxX, maxY, maxZ;

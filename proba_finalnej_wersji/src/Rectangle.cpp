@@ -3,7 +3,14 @@
 
 using namespace std;
 
-
+/**
+ * Konstruktor Rectangle
+ * otwiera plik do którego ścieżka i nazwa są podane w
+ * kModelRectangle
+ * konstruktory wszystkich innych klas (Bottom i Water) są odpowiednio przerobionym
+ * kontruktorem cuboida. Przeszkoda typu 2d
+ *
+ */
 Rectangle::Rectangle()
 {
     ifstream inputFile;
@@ -21,7 +28,12 @@ Rectangle::Rectangle()
     }
     inputFile.close();
 }
-
+/**
+ * wypisywanie do pliku
+ *
+ * @param filename - nazwa pliku do którego zapisujemy dane z rectangle
+ *
+ */
 void Rectangle::draw(string filename) const
 {
     ofstream outputFile;
@@ -42,7 +54,11 @@ void Rectangle::draw(string filename) const
     }
 }
 
-
+/**
+ * Funkcja sprawdzająca czy nastąpiło zderzenie z cuboidem (dla pozostałych analogiczne)
+ * @param drone
+ * @return prawda lub fałsz czyli zderzenie lub nie
+ */
 bool Rectangle::detectCollision(const Complete_drone &drone) const
 {
     double maxX, maxY, maxZ;

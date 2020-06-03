@@ -2,7 +2,14 @@
 #include <fstream>
 
 using namespace std;
-
+/**
+ * Konstruktor Cuboida
+ * otwiera plik do którego ścieżka i nazwa są podane w
+ * kModelCuboid
+ * konstruktory wszystkich innych klas (Bottom i Water) są odpowiednio przerobionym
+ * kontruktorem cuboida
+ *
+ */
 Cuboid::Cuboid()
 {
     ifstream inputFile;
@@ -19,6 +26,12 @@ Cuboid::Cuboid()
     }
     inputFile.close();
 }
+/**
+ * wypisywanie do pliku
+ *
+ * @param filename - nazwa pliku do którego zapisujemy dane z drona
+ *
+ */
 void Cuboid::draw(string filename) const
 {
     ofstream outputFile;
@@ -38,6 +51,11 @@ void Cuboid::draw(string filename) const
         }
     }
 }
+/**
+ * Funkcja sprawdzająca czy nastąpiło zderzenie z cuboidem (dla pozostałych analogiczne)
+ * @param drone
+ * @return prawda lub fałsz czyli zderzenie lub nie
+ */
 bool Cuboid::detectCollision(const Complete_drone &drone) const
 {
     double maxX, maxY, maxZ;

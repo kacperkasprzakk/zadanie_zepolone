@@ -2,7 +2,14 @@
 #include <fstream>
 
 using namespace std;
-
+/**
+ * Konstruktor Bottom
+ * otwiera plik do którego ścieżka i nazwa są podane w
+ * kModelBottom
+ * konstruktor jest analogiczny do
+ * kontruktora cuboida
+ *
+ */
 Bottom::Bottom()
 {
     ifstream inputFile;
@@ -21,7 +28,13 @@ Bottom::Bottom()
     }
     inputFile.close();
 }
-
+/**
+ * wypisywanie do pliku, analogicznie do cuboida
+ *
+ * @param filename - nazwa pliku do którego zapisujemy dane z dna
+ *
+ *
+ */
 void Bottom::draw(std::string filename) const
 {
     ofstream outputFile;
