@@ -13,6 +13,6 @@ class Cuboid: public Obstacle{
     bool detectCollision(const Complete_drone& drone) const;
     void getName() const
     {
-        std::cout << "cuboid";
+        std::cout << "klocek";
     };
 };
