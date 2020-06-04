@@ -13,6 +13,6 @@ class Rod: public Obstacle{
     bool detectCollision(const Complete_drone& drone) const;
     void getName() const
     {
-        std::cout << "rod";
+        std::cout << "pret";
     };
 };

@@ -13,6 +13,9 @@ using namespace std::chrono;
 
 int main()
 {
+    /**
+     * deklaracje zmiennych
+     */
     bool menu=true;
     char option;
     double distance, angle=0;
@@ -65,15 +68,28 @@ int main()
             cout << "Podaj wartosc kata obrotu w stopniach." << endl;
             cout << "Wartosc kata>";
             cin >> angle;
-            while (angle>360)
+            while (abs(angle)>360)
             {
-                angle=angle-360;
+                if(angle>360)
+                {
+                    angle=angle-360;
+                }
+                else
+                {
+                    angle=angle+360;
+                }
+
             }
             for (int i = 0; i < abs(angle); i++)
             {
                 if(angle>0)
-                    {scene->rotateDrone(1);}
-                else{scene->rotateDrone(-1);}
+                {
+                        scene->rotateDrone(1);
+                }
+                else
+                {
+                    scene->rotateDrone(-1);
+                }
                 scene->drawDrone();
                 link.Draw();
                 sleep_for(milliseconds(5));
@@ -93,12 +109,17 @@ int main()
             for (int i = 0; i < abs(distance); i++)
             {
                 if(distance > 0)
-                    {scene->moveDrone(angle, 1);}
-                else{scene->moveDrone(angle, -1);}
+                {
+                    scene->moveDrone(angle, 1);
+                }
+                else
+                {
+                    scene->moveDrone(angle, -1);
+                }
                 if(!scene->dronePosition()&&!scene->detectCollision()){
                     scene->drawDrone();
                     link.Draw();
-                    sleep_for(milliseconds(5));
+                    sleep_for(milliseconds(10));
                     sleep_until(system_clock::now());
                 } else break;
             }

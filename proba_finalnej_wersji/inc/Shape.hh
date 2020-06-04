@@ -4,7 +4,7 @@
 #include "Vector.hh"
 
 /**
- * Klasa bazwowa
+ * Klasa bazwowa, abstrakcyjna
  */
 class Shape{
 protected:

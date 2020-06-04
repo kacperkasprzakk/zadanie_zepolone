@@ -2,7 +2,14 @@
 #include <fstream>
 
 using namespace std;
-
+/**
+ * Konstruktor Cuboida
+ * otwiera plik do którego ścieżka i nazwa są podane w
+ * kModelWater
+ * konstruktory wszystkich innych klas (Bottom i Water) są odpowiednio przerobionym
+ * kontruktorem cuboida
+ *
+ */
 Water::Water()
 {
     ifstream inputFile;
@@ -20,6 +27,12 @@ Water::Water()
     }
     inputFile.close();
 }
+/**
+ * wypisywanie do pliku
+ *
+ * @param filename - nazwa pliku do którego zapisujemy dane z drona
+ *
+ */
 void Water::draw(std::string filename) const
 {
     ofstream outputFile;
